@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">
+    <g transform="translate(10941.5 3248.5)">
+        <rect width="45" height="45" transform="translate(-10941 -3248)" fill="#1b1b1b" stroke="#707070" stroke-width="1" opacity="0"/>
+        <g transform="translate(-10929.5 -3236.5)">
+            <g transform="translate(0 0)">
+                <path d="M.722,23.2l1.935-7.74L14.433,3.685l5.8,5.8L8.462,21.267.722,23.2ZM3.99,16.216,2.75,21.173l4.957-1.24L18.151,9.49,14.433,5.772,3.99,16.216Z" transform="translate(-0.722 -0.829)" fill="#1b1b1b" fill-rule="evenodd"/>
+                <path d="M7.79,23.854a5.585,5.585,0,0,0-4.077-4.077l.358-1.432A7.059,7.059,0,0,1,9.223,23.5l-1.432.358" transform="translate(-1.339 -3.855)" fill="#1b1b1b" fill-rule="evenodd"/>
+                <path d="M8.386,18.7,7.342,17.658,17.658,7.342,18.7,8.386,8.386,18.7" transform="translate(-2.089 -1.584)" fill="#1b1b1b" fill-rule="evenodd"/>
+                <path d="M2,26.4l2.3-.575A2.377,2.377,0,0,0,2.575,24.1L2,26.4" transform="translate(-0.986 -5.043)" fill="#1b1b1b" fill-rule="evenodd"/>
+                <path d="M24.49,8.2l-5.8-5.8L21,.086l.361.048a6.294,6.294,0,0,1,5.4,5.4l.048.361L24.49,8.2ZM20.772,2.4,24.49,6.116l.741-.741a4.819,4.819,0,0,0-3.718-3.718l-.741.741Z" transform="translate(-4.43 -0.086)" fill="#1b1b1b" fill-rule="evenodd"/>
+            </g>
+        </g>
+    </g>
+</svg>
