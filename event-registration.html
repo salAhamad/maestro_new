@@ -673,7 +673,7 @@
                                         </svg>
                                     </span>
                                 </button>
-                                <button class="cta__button">
+                                <button class="cta__button addNewRegistration">
                                     <span class="__text">Add New</span>
                                     <span class="cta__button__after__icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20.19" height="20.19" viewBox="0 0 20.19 20.19">
@@ -1626,7 +1626,7 @@
         </div>
     </section>
 
-    <section class="overlay__section" style="display: block;">
+    <section class="overlay__section newRegistrationFormSection" style="display: none;">
         <div class="overlay__sub__section">
             <div class="popup__container popup__dashboard__customize" style="max-width: 1020px;">
                 <div class="popup__header d-flex justify-content-between">
@@ -1643,24 +1643,24 @@
                     </div>
                 </div>
                 <div class="popup__body registration_body">
-                    <form action="" class="registration_form">
+                    <form action="" class="registration_form tab__container">
                         <div class="registration__tab__header">
                             <ul class="registration__tab">
-                                <li id="tab-1" class="active">
+                                <li id="tab-1" class="active tab__item">
                                     <span class="__numbers">1</span>
                                     <span class="__text">Registration Information</span>
                                 </li>
-                                <li id="tab-2">
+                                <li id="tab-2" class="tab__item">
                                     <span class="__numbers">2</span>
                                     <span class="__text">Personal Information</span>
                                 </li>
-                                <li id="tab-3">
+                                <li id="tab-3" class="tab__item">
                                     <span class="__numbers">3</span>
                                     <span class="__text">Entity Details</span>
                                 </li>
                             </ul>
                         </div>
-                        <div id="tab-1-data" class="registration__tab__body">
+                        <div id="tab-1-data" class="registration__tab__body tab__data active">
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="checkboxParent">
                                     <input type="checkbox" name="" id="mandatoryField">
@@ -1919,7 +1919,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div id="tab-2-data" class="registration__tab__body">
+                        <div id="tab-2-data" class="registration__tab__body tab__data">
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="checkboxParent">
                                     <input type="checkbox" name="" id="mandatoryField">
@@ -2784,7 +2784,7 @@
 
                             </div>
                         </div>
-                        <div id="tab-3-data" class="registration__tab__body">
+                        <div id="tab-3-data" class="registration__tab__body tab__data">
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="checkboxParent">
                                     <input type="checkbox" name="" id="mandatoryField">
@@ -3247,167 +3247,163 @@
                                 </div>         
                                 
                             </div>
-                        </div>
-
-                        <div class="payment_screen_container">
-                            <div class="regitration_success_block mb-4">
-                                <div class="left_block">
-                                    <div class="__icon">
-                                        <img src="images/registraion-success-icon.svg" alt="">
-                                    </div>
-                                    <p>Your registration is submited. Registration ID: <strong>424464</strong></p>
-                                </div>
-                                <div class="right_block">
-                                    <button type="button" class="cta__button cta__button__success no__shadow">
-                                        <span class="__text">View Details</span>
-                                        <span class="cta__button__after__icon"><i class="fas fa-chevron-right"></i></span>
-                                    </button>    
-                                </div>
-                            </div>
-                            <div class="paymentFormContainer mb-4">
-                                <div class="payment_form_header">
-                                    <div class="d-flex justify-content-between align-content-center mb-3">
-                                        <h4 class="font-montserrat fw-bold mb-0">Add: Payment</h4>
-                                        <button type="button" class="cta__button cta__button__grey no__shadow">
-                                            <span class="__text">Pay with Credit Card Online</span>
-                                            <span class="cta__button__after__icon"><i class="fas fa-chevron-right"></i></span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="row gy-4">
-                                            <div class="col-12">
-                                                <div class="input_field_container">
-                                                    <input type="email" name="" autocomplete="off" id="" class="inputBox" placeholder=" ">
-                                                    <label class="input_label">
-                                                        <i class="fas fa-star-of-life mandatoryIcon"></i>
-                                                        <span>Enter Amount</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="select_field_container">
-                                                    <select name="" id="" class="select_item">
-                                                        <option value="">Select Payment Method</option>
-                                                        <option value="">Payment Method</option>
-                                                        <option value="">Payment Method</option>
-                                                        <option value="">Payment Method</option>
-                                                        <option value="">Payment Method</option>
-                                                        <option value="">Payment Method</option>
-                                                        <option value="">Payment Method</option>
-                                                    </select>
-                                                    <label class="select_label">
-                                                        <i class="fas fa-star-of-life mandatoryIcon"></i>
-                                                        <span>Payment Method</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="input_field_container">
-                                                    <input type="email" name="" autocomplete="off" id="" class="inputBox" placeholder=" ">
-                                                    <label class="input_label">
-                                                        <i class="fas fa-star-of-life mandatoryIcon"></i>
-                                                        <span>Payment Ref#</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="input_field_container">
-                                                    <input type="datetime-local" name="" autocomplete="off" id="" class="inputBox" placeholder=" ">
-                                                    <label class="input_label">
-                                                        <i class="fas fa-star-of-life mandatoryIcon"></i>
-                                                        <span>Date / Time</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="select_field_container">
-                                                    <select name="" id="" class="select_item">
-                                                        <option value="">Select Status</option>
-                                                        <option value="">Pendding</option>
-                                                        <option value="">Under Process</option>
-                                                        <option value="">Completed</option>
-                                                    </select>
-                                                    <label class="select_label">
-                                                        <i class="fas fa-star-of-life mandatoryIcon"></i>
-                                                        <span>Status</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="card_design_container">
-                                            <h5>
-                                                <span>Card Details</span>
-                                                <span class="_line"></span>
-                                            </h5>
-                                            <div class="card_authentication_container">
-                                                <div class="input_field_container">
-                                                    <input type="text" name="" autocomplete="off" id="" class="inputBox" placeholder=" ">
-                                                    <label class="input_label">
-                                                        <i class="fas fa-star-of-life mandatoryIcon"></i>
-                                                        <span>Enter Auth Code</span>
-                                                    </label>
-                                                </div>
-                                                <div class="card_placeholder">
-                                                    <h5>
-                                                        <span>4XXX</span><span>XXXX</span><span>XXXX</span><span>XXXX</span>
-                                                    </h5>
-                                                    <div class="cart_type_icon">
-                                                        <img src="images/visa_icon.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-                        </div>
-
-                        <div class="registration__tab__footer">
+                        </div>    
+                    </form>    
+                    <div class="payment_screen_container" style="display: none;">
+                        <div class="regitration_success_block mb-4">
                             <div class="left_block">
-                                <div class="paymentSummaryContainer">
-                                    <span>Payment Summary</span>
-                                    <ul class="vat_details">
-                                        <li>
-                                            <div class="">
-                                                <span class="__label">Sub Total</span>
-                                                <span class="__value fw-bold">:  AED 1500.50</span>
-                                            </div>
-                                            <div class="">
-                                                <span class="__label">
-                                                    VAT 
-                                                    <span class="tooltipContainer">
-                                                        <i class="fas fa-info-circle"></i>
-                                                        <div class="tooltipData _left">Tooltip Content</div>
-                                                    </span>
-                                                </span>
-                                                <span class="__value fw-bold">:  AED 0.00</span>
-                                            </div>
-                                        </li>
-                                        <li class="totalAmount">
-                                            <span>Total Amount:</span>
-                                            <h5 class="mb-0 fw-bold">AED 1500.50</h5>
-                                        </li>
-                                    </ul>
+                                <div class="__icon">
+                                    <img src="images/registraion-success-icon.svg" alt="">
                                 </div>
+                                <p>Your registration is submited. Registration ID: <strong>424464</strong></p>
                             </div>
-                            <div class="right_block d-flex">
-                                <button class="cta__button cta__button__primary no__shadow">
-                                    <span class="__text">Personal Information</span>
+                            <div class="right_block">
+                                <button type="button" class="cta__button cta__button__success no__shadow">
+                                    <span class="__text">View Details</span>
                                     <span class="cta__button__after__icon"><i class="fas fa-chevron-right"></i></span>
-                                </button>
+                                </button>    
                             </div>
                         </div>
-                    </form>
-                    
+                        <div class="paymentFormContainer mb-4">
+                            <div class="payment_form_header">
+                                <div class="d-flex justify-content-between align-content-center mb-3">
+                                    <h4 class="font-montserrat fw-bold mb-0">Add: Payment</h4>
+                                    <button type="button" class="cta__button cta__button__grey no__shadow">
+                                        <span class="__text">Pay with Credit Card Online</span>
+                                        <span class="cta__button__after__icon"><i class="fas fa-chevron-right"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="row gy-4">
+                                        <div class="col-12">
+                                            <div class="input_field_container">
+                                                <input type="email" name="" autocomplete="off" id="" class="inputBox" placeholder=" ">
+                                                <label class="input_label">
+                                                    <i class="fas fa-star-of-life mandatoryIcon"></i>
+                                                    <span>Enter Amount</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="select_field_container">
+                                                <select name="" id="" class="select_item">
+                                                    <option value="">Select Payment Method</option>
+                                                    <option value="">Payment Method</option>
+                                                    <option value="">Payment Method</option>
+                                                    <option value="">Payment Method</option>
+                                                    <option value="">Payment Method</option>
+                                                    <option value="">Payment Method</option>
+                                                    <option value="">Payment Method</option>
+                                                </select>
+                                                <label class="select_label">
+                                                    <i class="fas fa-star-of-life mandatoryIcon"></i>
+                                                    <span>Payment Method</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="input_field_container">
+                                                <input type="email" name="" autocomplete="off" id="" class="inputBox" placeholder=" ">
+                                                <label class="input_label">
+                                                    <i class="fas fa-star-of-life mandatoryIcon"></i>
+                                                    <span>Payment Ref#</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="input_field_container">
+                                                <input type="datetime-local" name="" autocomplete="off" id="" class="inputBox" placeholder=" ">
+                                                <label class="input_label">
+                                                    <i class="fas fa-star-of-life mandatoryIcon"></i>
+                                                    <span>Date / Time</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="select_field_container">
+                                                <select name="" id="" class="select_item">
+                                                    <option value="">Select Status</option>
+                                                    <option value="">Pendding</option>
+                                                    <option value="">Under Process</option>
+                                                    <option value="">Completed</option>
+                                                </select>
+                                                <label class="select_label">
+                                                    <i class="fas fa-star-of-life mandatoryIcon"></i>
+                                                    <span>Status</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-7">
+                                    <div class="card_design_container">
+                                        <h5>
+                                            <span>Card Details</span>
+                                            <span class="_line"></span>
+                                        </h5>
+                                        <div class="card_authentication_container">
+                                            <div class="input_field_container">
+                                                <input type="text" name="" autocomplete="off" id="" class="inputBox" placeholder=" ">
+                                                <label class="input_label">
+                                                    <i class="fas fa-star-of-life mandatoryIcon"></i>
+                                                    <span>Enter Auth Code</span>
+                                                </label>
+                                            </div>
+                                            <div class="card_placeholder">
+                                                <h5>
+                                                    <span>4XXX</span><span>XXXX</span><span>XXXX</span><span>XXXX</span>
+                                                </h5>
+                                                <div class="cart_type_icon">
+                                                    <img src="images/visa_icon.svg" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                                
+                        </div>
+                    </div>
+                </div>
+                <div class="popup__footer registration__tab__footer">
+                    <div class="left_block">
+                        <div class="paymentSummaryContainer">
+                            <span>Payment Summary</span>
+                            <ul class="vat_details">
+                                <li>
+                                    <div class="">
+                                        <span class="__label">Sub Total</span>
+                                        <span class="__value fw-bold">:  AED 1500.50</span>
+                                    </div>
+                                    <div class="">
+                                        <span class="__label">
+                                            VAT 
+                                            <span class="tooltipContainer">
+                                                <i class="fas fa-info-circle"></i>
+                                                <div class="tooltipData _left">Tooltip Content</div>
+                                            </span>
+                                        </span>
+                                        <span class="__value fw-bold">:  AED 0.00</span>
+                                    </div>
+                                </li>
+                                <li class="totalAmount">
+                                    <span>Total Amount:</span>
+                                    <h5 class="mb-0 fw-bold">AED 1500.50</h5>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="right_block d-flex">
+                        <button class="cta__button cta__button__primary no__shadow">
+                            <span class="__text">Personal Information</span>
+                            <span class="cta__button__after__icon"><i class="fas fa-chevron-right"></i></span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
     <script>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">
+    <g transform="translate(10941.5 3293.5)">
+        <rect width="45" height="45" transform="translate(-10941 -3293)" fill="#1b1b1b" stroke="#707070" stroke-width="1" opacity="0"/>
+        <g transform="translate(-10931.5 -3283.5)">
+            <path d="M22.583,25.42H2.509A2.512,2.512,0,0,1,0,22.911V4.509A2.332,2.332,0,0,1,2.091,2H3.346V3.673H2.091c-.144,0-.418.326-.418.836v18.4a.838.838,0,0,0,.836.836H22.583a.838.838,0,0,0,.836-.836V4.509c0-.51-.274-.836-.418-.836H21.747V2H23a2.332,2.332,0,0,1,2.091,2.509v18.4a2.512,2.512,0,0,1-2.509,2.509" transform="translate(0 -0.327)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M6.836,5.019A.837.837,0,0,1,6,4.182V.836a.836.836,0,1,1,1.673,0V4.182a.837.837,0,0,1-.836.836" transform="translate(-0.981)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M22.836,5.019A.837.837,0,0,1,22,4.182V.836a.836.836,0,1,1,1.673,0V4.182a.837.837,0,0,1-.836.836" transform="translate(-3.599)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M10,2h8.364V3.673H10Z" transform="translate(-1.636 -0.327)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M2,8H23.747V9.673H2Z" transform="translate(-0.327 -1.309)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M24,12h1.673v1.673H24Z" transform="translate(-3.926 -1.963)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M20,12h1.673v1.673H20Z" transform="translate(-3.272 -1.963)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M16,12h1.673v1.673H16Z" transform="translate(-2.617 -1.963)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M12,12h1.673v1.673H12Z" transform="translate(-1.963 -1.963)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M8,12H9.673v1.673H8Z" transform="translate(-1.309 -1.963)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M24,16h1.673v1.673H24Z" transform="translate(-3.926 -2.617)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M20,16h1.673v1.673H20Z" transform="translate(-3.272 -2.617)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M16,16h1.673v1.673H16Z" transform="translate(-2.617 -2.617)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M12,16h1.673v1.673H12Z" transform="translate(-1.963 -2.617)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M8,16H9.673v1.673H8Z" transform="translate(-1.309 -2.617)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M4,16H5.673v1.673H4Z" transform="translate(-0.654 -2.617)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M24,20h1.673v1.673H24Z" transform="translate(-3.926 -3.271)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M20,20h1.673v1.673H20Z" transform="translate(-3.272 -3.271)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M16,20h1.673v1.673H16Z" transform="translate(-2.617 -3.271)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M12,20h1.673v1.673H12Z" transform="translate(-1.963 -3.271)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M8,20H9.673v1.673H8Z" transform="translate(-1.309 -3.271)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M4,20H5.673v1.673H4Z" transform="translate(-0.654 -3.271)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M20,24h1.673v1.673H20Z" transform="translate(-3.272 -3.926)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M16,24h1.673v1.673H16Z" transform="translate(-2.617 -3.926)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M12,24h1.673v1.673H12Z" transform="translate(-1.963 -3.926)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M8,24H9.673v1.673H8Z" transform="translate(-1.309 -3.926)" fill="#1b1b1b" fill-rule="evenodd"/>
+            <path d="M4,24H5.673v1.673H4Z" transform="translate(-0.654 -3.926)" fill="#1b1b1b" fill-rule="evenodd"/>
+        </g>
+    </g>
+</svg>

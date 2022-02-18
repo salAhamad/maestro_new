@@ -7,7 +7,21 @@
 @import 'variables';
 @import 'mixins';
 
-
+html {
+    font-size: 14px;
+    scrollbar-width: thin;
+    scrollbar-color: $primary rgba($primary, 0.05);
+    ::-webkit-scrollbar {
+        width: .7rem;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: $primary;
+        border-radius: .7rem;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: rgba($primary, 0.05);
+    }
+}
 body {
     font-family: $roboto;
     font-size: .9rem;
@@ -928,14 +942,14 @@ $rotateTranstion: 45s;
 }
 
 .cta__button {
-    $buttonHeight: 40px;
+    $buttonHeight: $iconHeight;
     height: $buttonHeight;
     @include flexCenter();
     border: 1px solid transparent;    
     padding: 0 1rem;
     background-color: $white;
     border-radius: .25rem;
-    font-size: .9rem;
+    font-size: 1rem;
     transition: $transition;
     outline: none;
     i {font-size: .8rem;}
@@ -967,9 +981,9 @@ $rotateTranstion: 45s;
         color: $white;
         background-image: $primaryGradient;
         &:hover {
-            background-color: $primary;
-            border-color: $primary;
-            color: $white;
+            background-color: $primary !important;
+            border-color: $primary !important;
+            color: $white !important;
             // box-shadow: none;
             background-image: none;
             box-shadow: inset 0 0 0 1px $primary;
@@ -1025,6 +1039,7 @@ $rotateTranstion: 45s;
             max-width: 300px;
             min-width: 300px;
             max-height: calc(100vh - calc(70px + 2vh));
+            min-height: calc(100vh - calc(70px + 2vh));
             background-color: $white;
             position: sticky;
             top: 70px;
@@ -1227,7 +1242,7 @@ $rotateTranstion: 45s;
             width: 100%;
             padding-left: 2rem;
             &.table__main__block {
-                max-width: 1050px;
+                max-width: 1080px;
                 overflow-x: scroll;
             }
             .event__header {
@@ -1412,13 +1427,13 @@ $rotateTranstion: 45s;
 
 .moreInfoButtonContainer {
     position: relative;
-    $iconSize: 35px;
+    $iconSize: 40px;
     overflow: hidden;
 
     > .icon {
         width: $iconSize;
         height: $iconSize;
-        font-size: 1rem;
+        font-size: 1.4rem;
         @include flexCenter();
         border-radius: $iconSize / 2;
         position: relative;
@@ -1478,6 +1493,14 @@ $rotateTranstion: 45s;
                         display: flex;
                         justify-content: center;
                         &::before {display: inline-block; margin-left: -0.2rem;}
+                    }
+                }
+                &.__trash  {
+                    background-color: rgba(red, .05) !important;
+                    &:hover {
+                        background-color: red !important;
+                        color: $white !important;
+                        .icon {color: $white !important;}
                     }
                 }
             }
@@ -1580,10 +1603,11 @@ footer {
                 top: 4px;
                 width: 250px;
                 z-index: 0;
+                margin-right: -140px;
                 img, svg {max-height: 100%;}
             }
             h3 {
-                margin-left: -8rem;
+                // margin-left: -8rem;
                 font-size: 26px;
                 font-family: $montserrat;
                 font-weight: 700;
@@ -1615,7 +1639,7 @@ footer {
             }
         }
     }
-    .popup__body { 
+    .popup__body {
         padding: 0 0 0 1.5rem;
         display: flex;
 
@@ -1712,7 +1736,8 @@ footer {
             }
         }
         &.registration_body {
-            padding: 1.5rem 2rem;
+            flex-direction: column;
+            padding: 1.5rem 2rem 0;
         }
     }
     .popup__footer {
@@ -1725,7 +1750,6 @@ footer {
 // Registration Form
 .registration_form {
     width: 100%;
-
     .registration {
         &__tab__header {
             position: relative;
@@ -1783,51 +1807,6 @@ footer {
             position: relative;
             width: 100%;
             &:not(.active) {display: none;}
-            .checkboxParent {
-                position: relative;
-                display: flex;
-                align-items: center;
-                input {
-                    width: 18px;
-                    height: 18px;
-                    outline: none;
-                    position: absolute;
-                    left: .75rem;
-                }
-                label {
-                    background-color: #ebebeb;
-                    border-radius: 5px;
-                    padding: 0 .9rem 0 2.5rem;
-                    max-width: max-content;
-                    display: flex;
-                    align-items: center;
-                    height: 40px;
-                    transition: $transition;
-                    cursor: pointer;
-                    &:hover {background-color: #ddd;}
-                }
-                input:checked ~ label {
-                    font-weight: 700;
-                    background-color: lighten($primary, 49%);
-                    box-shadow: inset 0 0 0 1px lighten($primary, 30%);
-                }
-            }
-            .resetButton {
-                position: relative;
-                height: 40px;
-                border-radius: 5px;
-                background-color: #ebebeb;
-                padding: 0 1rem;
-                display: flex;
-                align-items: center;
-                outline: none;
-                border: 0;
-                transition: $transition;
-                &:hover {
-                    background-color: $primary;
-                    color: $white;
-                }
-            }
 
             .vat_discount_detail {
                 position: relative;
@@ -1877,62 +1856,142 @@ footer {
                 }
             }
         }
-        &__tab__footer {
-            border-top: 1px solid $borderColor;
-            padding: 1rem 0 0;
-            margin-top: 1rem;
-            border-radius: 0 0 $borderRadius $borderRadius;
-            justify-content: space-between;
-            width: 100%;
-            display: flex;
-            align-items: end;
+    }
+}
 
-            .paymentSummaryContainer {
+.checkboxParent {
+    position: relative;
+    display: flex;
+    align-items: center;
+    input {
+        width: 18px;
+        height: 18px;
+        outline: none;
+        position: absolute;
+        left: .75rem;
+    }
+    label {
+        background-color: #ebebeb;
+        border-radius: 5px;
+        padding: 0 .9rem 0 2.5rem;
+        max-width: max-content;
+        display: flex;
+        align-items: center;
+        height: 40px;
+        transition: $transition;
+        cursor: pointer;
+        &:hover {background-color: #ddd;}
+    }
+    input:checked ~ label {
+        font-weight: 700;
+        background-color: lighten($primary, 49%);
+        box-shadow: inset 0 0 0 1px lighten($primary, 30%);
+    }
+
+    &.switchBoxParent {
+        input {
+            position: absolute;
+            z-index: -9999;
+        }
+        label {
+            background-color: #f5f5f5;
+            position: relative;
+            padding-left: 60px;
+            &::before, &::after {
+                position: absolute;
+                border-radius: 15px;
+                content: '';
+                left: 10px;
+                transition: $transition;
+            }
+            &::before {
+                width: 38px;
+                height: 20px;
+                background-color: #ccc;
+            }
+            &::after {
+                left: 12px;
+                width: 16px;
+                height: 16px;
+                background-color: $white;
+            }
+        }
+        input:checked ~ label:before { background-color: $primary; }
+        input:checked ~ label:after { left: 30px; }
+    }
+}
+
+.resetButton {
+    position: relative;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #ebebeb;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    outline: none;
+    border: 0;
+    transition: $transition;
+    &:hover {
+        background-color: $primary;
+        color: $white;
+    }
+}
+.registration__tab__footer {
+    border-top: 1px solid $borderColor;
+    padding: 1rem 0 0;
+    margin-top: 1rem;
+    border-radius: 0 0 $borderRadius $borderRadius;
+    justify-content: space-between;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    .paymentSummaryContainer {
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            top: calc(-1rem - 1px);
+            left: -1.5rem;
+            width: calc(100% * 1.15);
+            height: calc(100% + 2.25rem + 1px);
+            background-color: #ccc;
+            z-index: 0;
+            border-radius: 0 0 0 0.8rem;
+            background-image: $whiteGradient;
+            border-top: 1px solid $borderColor;
+        }
+        > span {
+            text-transform: uppercase;
+            font-size: .7rem;
+            letter-spacing: .1rem;
+            position: relative;
+            z-index: 1;
+            top: -0.25rem;
+        }
+        .vat_details {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            li {
                 position: relative;
-                &::after {
-                    content: '';
-                    position: absolute;
-                    top: calc(-1rem - 1px);
-                    left: -2rem;
-                    width: calc(100% * 1.15);
-                    height: calc(100% + 2.5rem + 1px);
-                    background-color: #ccc;
-                    z-index: 0;
-                    border-radius: 0 0 0 0.8rem;
-                    background-image: $whiteGradient;
-                    border-top: 1px solid $borderColor;
-                }
-                > span {
-                    text-transform: uppercase;
-                    font-size: .7rem;
-                    letter-spacing: .1rem;
-                    position: relative;
-                    z-index: 1;
-                    top: -0.25rem;
-                }
-                .vat_details {
-                    margin: 0;
-                    padding: 0;
-                    list-style: none;
-                    position: relative;
-                    z-index: 1;
-                    display: flex;
-                    li {
-                        position: relative;
-                        line-height: 1.4rem;
-                        padding-right: 1rem;
-                        margin-right: 1rem;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        gap: .1rem;
-                        &:first-child {border-right: 1px solid $borderColor;}
-                        .__label {min-width: 65px; display: inline-block;}
-                    }
-                }
+                line-height: 1.4rem;
+                padding-right: 1rem;
+                margin-right: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: .1rem;
+                &:first-child {border-right: 1px solid $borderColor;}
+                .__label {min-width: 65px; display: inline-block;}
             }
         }
     }
+    .cta__button {height: 45px;}
 }
 input[type="number"] {
     &::-webkit-outer-spin-button,
@@ -2143,8 +2202,28 @@ input[type="number"] {
         top: -0.75rem;
         right: 0.75rem;
         z-index: 1;
+        i { box-shadow: 0 0 0 4px var(--bs-body-bg); }
     }
     small {font-size: 0.72em;}
+}
+input, select, textarea {
+    background-color: transparent;
+    &::-webkit-autofill,
+    &::-webkit-autofill:hover, 
+    &::-webkit-autofill:focus, 
+    &::-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+        transition: background-color 5000s ease-in-out 0s;
+        -webkit-text-fill-color: black !important;
+    }
+    &::-moz-autofill,
+    &::-moz-autofill:hover, 
+    &::-moz-autofill:focus, 
+    &::-moz-autofill:active {
+        -moz-box-shadow: 0 0 0 30px white inset !important;
+        transition: background-color 5000s ease-in-out 0s;
+        -moz-text-fill-color: black !important;
+    }
 }
 
 .tooltipContainer {
@@ -2515,7 +2594,6 @@ input[type="number"] {
         z-index: 5;
         
         .left-block, .right-block { gap: .7rem; }
-
         .cta__button {
             background-color: rgba($white, .3);
             backdrop-filter: blur(3px);
@@ -2541,7 +2619,6 @@ input[type="number"] {
                 }
             }
         }
-
         .header__search {
             position: relative;
             i {
@@ -2569,6 +2646,43 @@ input[type="number"] {
                     color: $black;
                     &::placeholder,
                     ~ i {color: $black;}
+                }
+            }
+        }
+
+        &.table__searchBar__header {
+            position: relative;
+            background-image: none;
+            border-radius: 0;
+            background-color: $white;
+            border: 1px solid $borderColor;
+            border-bottom: 0;
+
+            .searchInput {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                max-width: 50%;
+                $inputHeight: 40px;
+                i {
+                    width: $inputHeight;
+                    height: $inputHeight;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    @include flexCenter();
+                    font-size: 1.0rem;
+                }
+                input {
+                    width: 100%;
+                    height: $inputHeight;
+                    border: 0;
+                    padding-left: $inputHeight + 5;
+                    outline: none;
+                    border-radius: $borderRadius - .3;
+                    font-size: 1rem;
+                    &::placeholder {font-style: italic;}
+                    &:focus {background-color: #f1f1f1;}
                 }
             }
         }
@@ -2656,6 +2770,8 @@ input[type="number"] {
         position: relative;
         background-color: $tableHeadBgColor;
         font-size: 13px;
+        position: sticky;
+        top: 0;
     }
     tbody {
         position: relative;
@@ -2666,14 +2782,15 @@ input[type="number"] {
             position: relative;
             z-index: 1;
             background-color: $white;
+            &.active {z-index: 3;}
             
             &:not(.spacer) { box-shadow: inset 0 0 0 1px darken($tableHeadBgColor, 8%); }
             
-            &:hover {
+            &:hover, &:focus-within, &:foc {
                 box-shadow: inset 0 0 0 1px $white,
                     inset 0 0 0 2px $primary,
                     0 10px 20px rgba(#000000, 0.07);
-                z-index: 2;
+                z-index: 5;
                 background-color: lighten($primary, 45%);
             }
             td {
@@ -2709,9 +2826,12 @@ input[type="number"] {
                     }
                 }
                 &.action__cell { 
-                    min-width: 42px;
+                    min-width: 55px;
                     max-width: 42px;
                     padding: 6px;
+                    .moreInfoButtonContainer {
+                        max-width: max-content;
+                    }
                 }
                 &.checkbox__cell {
                     min-width: 30px;
@@ -2720,7 +2840,7 @@ input[type="number"] {
                 }
             }
             &:nth-child(even),
-            &.spacer { height: 10px; }
+            &.spacer { height: 7px; }
             &.selected {
                 background-color: $primary;
                 z-index: 2;
@@ -2797,5 +2917,535 @@ input[type="number"] {
         background-color: rgba(blue, 0.15);
         border: 1px solid rgba(blue, 0.1);
         color: darkblue;
+    }
+}
+
+// registration details
+.registration__detail {
+    position: relative;
+
+    &__header {
+        position: relative;
+        margin-bottom: 1.5rem;
+        .left__block {position: relative;}
+        .right__block {
+            position: relative;
+            display: flex;
+            gap: 0.65rem;
+        }
+    }
+    &___body {
+        position: relative;
+        .status__buttons {
+            position: relative;
+            background-color: #eee;
+            border-radius: 4px;
+            height: $iconHeight;
+            padding: .75rem .35rem .75rem .75rem;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            .__icon {
+                width: $iconHeight - 10px;
+                height: $iconHeight - 10px;
+                @include flexCenter();
+                border-radius: 4px;
+                margin-left: .6rem;
+                font-size: 1rem;
+                &.text_button { width: auto;    padding: 0 .5rem; }
+            }
+            &.confirmed, &.confirm, &.acitve {
+                .__icon {
+                    background-color: $green;
+                    color: $white;
+                    &.text_button {
+                        background-color: rgba($green, .3);
+                        color: darken($green, 10%);
+                        font-weight: 500;
+                    }
+                }
+            }
+            &.not-confirmed, &.not-confirm, &.inacitve {
+                .__icon {
+                    background-color: $red;
+                    color: $white;
+                    &.text_button {
+                        background-color: rgba($red, .2);
+                        color: darken($red, 10%);
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        .content__block {
+            background-color: $white;
+            border-radius: $borderRadius;
+            padding: 2rem;
+            box-shadow: $boxShadow;
+            &:not(:last-child) {margin-bottom: 2.5rem;}
+            &:first-child { box-shadow: $boxShadow, inset 0 -5px 0 $primary; }
+            
+            .__header {
+                position: relative;
+                border-bottom: 1px solid #E6E6E6;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+                h4 {font-size: 21px; margin-bottom: 0;font-weight: 400;}
+                .left__block {
+                    position: relative; display: flex;
+                }
+                .right__block {
+                    position: relative;
+                    display: flex;
+                    gap: .5rem;
+                }
+            }
+
+            .__body {
+                position: relative;
+                width: 100%;
+                .regInfo_container {
+                    position: relative;
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin-bottom: 0;
+                    padding: 0;
+                    list-style: none;
+                    $paddingGap: 1rem;
+                    margin: 0;
+                    li {
+                        position: relative;
+                        width: calc(25% + #{$paddingGap} / 3);
+                        padding: 1rem 0;
+                        border-bottom: 1px solid $borderColor;
+                        padding-right: $paddingGap;
+                        transition: $transition;
+                        &:nth-child(4n) {
+                            padding-right: 0;
+                            width: calc(25% - #{$paddingGap});
+                        }
+                        @for $i from 1 through 4 {
+                            &:nth-last-child( #{$i}) { border-bottom: 0; }
+                        }
+
+                        > span {
+                            display: block;
+                            width: 100%;
+                            &.__label {
+                                font-size: .88rem;
+                                display: flex;
+                                align-items: center;
+                                margin-bottom: 0.25rem;
+                                .varifiedLabel {
+                                    margin-left: .5rem;
+                                    @include flexCenter();
+                                    gap: 0.35rem;
+                                    font-size: 0.8rem;
+                                    line-height: 0.8rem;
+                                    font-weight: 500;
+                                    color: $green;
+                                    i {
+                                        font-size: 0.6rem;
+                                        @include flexCenter();                                        
+                                        width: 16px;
+                                        height: 16px;
+                                        background-color: $green;
+                                        color: $white;
+                                        border-radius: 3px;
+                                    }
+                                }
+                            }
+                            &.__value {
+                                font-size: 1rem;
+                                font-weight: 700;
+                                display: flex;
+                                align-items: center;
+                                padding-right: 0.5rem;
+                                .copy_icon {
+                                    @include flexCenter();
+                                    width: $iconHeight - 12px;
+                                    height: $iconHeight - 12px;
+                                    border-radius: 4px;
+                                    margin-left: 0.5rem;
+                                    transition: $transition;
+                                    cursor: pointer;
+                                    &:hover { background-color: $primary; color: $white; }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .regFullDetails_container {
+                    position: relative;
+                    width: 100%;
+                    .regFullDetails_header {
+                        position: relative;
+                        width: 100%;
+
+                        .tabs_container {
+                            position: relative;
+                            width: 100%;
+                            display: flex;
+                            background-color: #f1f1f1;
+                            justify-content: space-between;
+                            align-items: center;
+                            align-content: inherit;
+                            list-style: none;
+                            margin: 0;
+                            padding: 0;
+                            li {
+                                position: relative;
+                                width: 100%;
+                                height: 50px;
+                                font-size: 1rem;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                white-space: nowrap;
+                                padding: 0 1.5vw;
+                                cursor: pointer;
+                                transition: $transition;
+                                &.active {color: $white;}
+                            }
+                        }
+                    }
+                    .regFullDetails_body {
+                        position: relative;
+                        width: 100%;
+                        background-color: rgba($primary, .06);
+                        transition: $transition;
+                        .tab__data {
+                            &:not(.active) {display: none;}
+                            .regInfo_container {
+                                padding: .85rem 1.5vw;
+                                overflow: hidden;
+                                li {margin-top: -100px;}
+                            }
+                            .regAccessibilityDetail {
+                                position: relative;
+                                width: 100%;
+                                padding: 1rem 1.5vw;
+                                border-top: 1px solid $borderColor;
+                                border-bottom: 1px solid $borderColor;
+                                display: flex;
+                                gap: 1.5vw;
+                                
+                                .regPriceDetail {
+                                    background-color: $white;
+                                    border: 1px solid $borderColor;
+                                    padding: .9rem 1rem;
+                                    border-radius: $borderRadius - .1;
+                                    gap: 2rem;
+                                    .__price {
+                                        position: relative;
+                                        padding: 0;
+                                        margin: 0;
+                                        list-style: none;
+                                        min-width: 180px;
+                                        li {
+                                            display: flex;
+                                            align-items: center;
+                                            &:not(:last-child) {
+                                                margin-bottom: .5rem;
+                                                padding-bottom: .5rem;
+                                                border-bottom: 1px solid $borderColor;
+                                            }
+                                            span {
+                                                display: block;
+                                                &.__label {min-width: 80px;}
+                                                &.__value {
+                                                    font-weight: 700;
+                                                    font-size: 1rem;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .accesibilityStatus {
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    gap: .4rem;
+                                    align-items: start;
+                                    align-content: start;
+
+                                    .status__buttons {
+                                        background-color: $white;
+                                        font-size: .88rem;
+                                        border: 1px solid #ddd;
+                                    }
+                                }
+                            }
+                            .regAreaOfInterest_container {
+                                position: relative;
+                                padding: 1rem 1.5vw;
+                                display: flex;
+                                align-items: start;
+                                gap: 2rem;
+                                h6 {margin-top: .5rem; margin-bottom: 0; white-space: nowrap;}
+                                > div {
+                                    gap: .35rem;
+                                }
+                                .status__buttons {
+                                    background-color: $white;
+                                    font-size: .88rem;
+                                    border: 1px solid #ddd;
+                                    .__icon {
+                                        background-color: $white;
+                                        color: $green;
+                                    }
+                                }
+                            }
+                            &.active {
+                                .regInfo_container li {margin-top: 0;}
+                            }
+                        }
+                    }
+                }
+            }
+
+            .tab__active__bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 0;
+                transition: $transition;
+                display: inline-block;
+                background-color: $primary;
+            }
+
+            &.tab__content__blcok {
+                position: relative;
+                width: 100%;
+                padding: 0;
+                .__header {
+                    background-color: $primary;
+                    border-radius: $borderRadius $borderRadius 0 0;
+                    padding: 0;
+                    margin: 0;
+                    .regTabContent__header {
+                        position: relative;
+                        width: 100%;
+                        margin-bottom: -1px;
+                        .regTab_container {
+                            display: flex;
+                            list-style: none;
+                            padding: 1.5rem 2rem 0.8rem;
+                            margin: 0;
+                            $tabHeight: 50px;
+                            li {
+                                position: relative;
+                                height: $tabHeight - 10;
+                                padding: 0 1.2rem;
+                                display: flex;
+                                align-items: center;
+                                font-size: 1.1rem;
+                                color: $white;
+                                cursor: pointer;
+                                span {position: relative;z-index: 1;}
+                                &::before {
+                                    content: '';
+                                    position: absolute;
+                                    top: -7px;
+                                    right: 0;
+                                    width: 0%;
+                                    height: 100%;
+                                    z-index: 0;
+                                    background-color: $white;
+                                    border-radius: 5px 5px 0 0;
+                                    height: $tabHeight + 10;
+                                    transition: $transition;
+                                }
+                                &.active {
+                                    // background-color: $white;
+                                    color: $primary;
+                                    font-weight: 700;
+                                    &::before {
+                                        width: 100%;
+                                        left: 0;
+                                    }
+                                }
+                            }
+                            .tab__active__bg {
+                                background-color: $white;
+                                border-radius: 5px 5px 0 0;
+                                top: initial;
+                                height: $tabHeight + 10;
+                                bottom: 0;
+                            }
+                        }
+                    }
+                }
+                .__body {
+                    padding: 1.5vw;
+                    .tab__data {
+                        position: relative;
+                        &:not(.active) {display: none;}
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mergeContact__bodyContent {
+    padding: 2rem !important;
+    width: 100%;
+    .mergeContactSelection {
+        width: 100%;
+    }
+}
+
+.search_n_select_container {
+    border: 1px solid $borderColor;
+    border-radius: $borderRadius - .25;
+    padding: .25rem;
+    position: relative;
+    $itemHeight: 35px;
+    &:not(:last-child) {margin-bottom: 1.5rem;}
+    .__selected_items_container {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem;
+        .selected__item {
+            max-width: max-content;
+            border-radius: $borderRadius - .3;
+            background-color: $lightGray;
+            height: $itemHeight - 8;
+            font-size: .9rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: .5rem .15rem .5rem .3rem;
+            transition: $transition;
+            &:last-child {margin-bottom: .5rem;}
+
+            span {
+                display: inline-block;
+                &._id {
+                    border-right: 1px solid $borderColor;
+                    padding-right: 0.35rem;
+                    margin-right: 0.35rem;
+                }
+            }
+            .__icon, .__remove__icon {
+                min-width: $itemHeight - 15;
+                width: $itemHeight - 15;
+                height: $itemHeight - 15;
+                @include flexCenter();
+                img, svg {max-width: 100%;}
+                font-size: 1rem;
+            }
+            .__icon {margin-right: .5rem;}
+            .__remove__icon {
+                margin-left: .4rem;
+                border-radius: $borderRadius - .35;
+                color: $red;
+                transition: $transition;
+                font-size: 1.3rem;
+                &:hover {
+                    background-color: $red;
+                    color: $white;
+                }
+            }
+            &:hover {
+                background-color: rgba($primary, 0.1);
+                box-shadow: inset 0 0 0 1px rgba($primary, 0.3);
+                color: $primary;
+            }
+        }
+    }
+    .__search__item {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        input {
+            border-radius: $borderRadius - .25;
+            background-color: transparent;
+            outline: none;
+            width: 100%;
+            padding: 0 .8rem 0 $itemHeight + 5;
+            height: $itemHeight + 5;
+            border: 0;
+            outline: none;
+            transition: $transition;
+            &:focus {
+                background-color: #e6e6e6;
+                box-shadow: inset 0 0 0 1px $primary;
+                ~ i {color: $primary; }
+            }
+        }
+        i {
+            width: $itemHeight + 5;
+            height: $itemHeight + 5;
+            @include flexCenter();
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: $transition;
+        }
+    }
+    .__items_list {
+        position: absolute;
+        top: calc(100% + .15rem);
+        width: 100%;
+        left: 0;
+        padding: 0;
+        margin: 0;
+        background-color: $white;
+        border-radius: $borderRadius - .25;
+        box-shadow: inset 0 0 0 1px $primary;
+        max-height: 260px;
+        overflow-y: scroll;
+        z-index: 1;
+        ::-webkit-scrollbar-thumb {width: 10px;}
+        .__item {
+            width: 100%;
+            height: $itemHeight + 5;
+            @include flexCenter($jc: start);
+            padding: 0 1rem;
+            font-size: 1rem;
+            transition: $transition;
+            cursor: pointer;
+            &:not(:last-child) { border-bottom: 1px solid #eee; }
+            &.selected {
+                background-color: rgba($primary, .1);
+                color: $primary;
+                font-weight: 700;
+                &:after {
+                    border-radius: $borderRadius - .3;
+                    content: '\f00c';
+                    width: $itemHeight - 10;
+                    height: $itemHeight - 10;
+                    @include fontAwesome();
+                    @include flexCenter();
+                    position: absolute;
+                    right: .5rem;
+                    background-color: $primary;
+                    color: $white;
+                }
+            }
+            span {
+                display: inline-block;
+                &._id {
+                    border-right: 1px solid $borderColor;
+                    padding-right: 0.35rem;
+                    margin-right: 0.35rem;
+                }
+            }
+
+            &:hover {
+                background-color: rgba($primary, .1);
+                color: $primary;
+            }
+        }
     }
 }
