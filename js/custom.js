@@ -161,7 +161,13 @@ regTabItems.forEach(item => {
 });
 
 /* =============================== Search and select Items [Begin] =============================== */
-
+// Searchable Inputs
+const inputs = document?.querySelectorAll('.search_item')
+inputs.forEach(input => {
+    input.addEventListener('keyup', function(e) {
+        searchSelction(e);
+    })
+})
 function searchSelction(e) {
     var input, filter, lists, li, a, i, txtValue;
     input = e.target;
@@ -177,24 +183,25 @@ function searchSelction(e) {
         thisText = item.querySelector("._name");
         idValue = thisId.textContent || thisId.innerText;
         txtValue = thisText.textContent || thisText.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1 || idValue.toUpperCase().indexOf(filter) > -1) {
-            // item[index].style.display = "";
+        if (txtValue.toUpperCase().indexOf(filter) > -1 || idValue.indexOf(filter) > -1) {
+            item.style.display = "";
         } else {
-            // item[index].style.display = "none";
+            item.style.display = "none";
         }
     })
     // for (i = 0; i < li.length; i++) {
     // }
 }
 
+
 // Loading/Adding Selected Item
 const selecteItemContainer = document?.querySelector('.__selected_items_container');
-// const selectedItems = [
-//     { id: 555913, text: 'Tahreer Almutairi', },
-//     { id: 32507, text: 'Moath Alotaibi', },
-//     { id: 555912, text: 'Mohammed Al Masri', },
-// ];
-const selectedItems = [];
+let selectedItems = [
+    { id: 555913, text: 'Tahreer Almutairi', },
+    { id: 32507, text: 'Moath Alotaibi', },
+    { id: 555912, text: 'Mohammed Al Masri', },
+];
+// const selectedItems = [];
 
 function loadSelectedItems() {
     selectedItems.map((item, index) => {
@@ -206,12 +213,22 @@ function loadSelectedItems() {
                 <span class="_id">${item.id}</span>
                 <span class="_name">${item.text}</span>
             </span>
-            <span class="__remove__icon">&times;</span>
+            <span class="__remove__icon removeIcon" id="${item.id}">&times;</span>
         </div>`
         return selecteItemContainer.insertAdjacentHTML('beforeend', loadItem);
     })
 }
-// loadSelectedItems();
+loadSelectedItems();
+
+const removeSelecteItem = document?.querySelectorAll('.selected__item .removeIcon');
+removeSelecteItem.forEach(removeItem => {
+    removeItem.addEventListener('click', function(e) {
+        let thisId = e.target.id;
+        selectedItems = selectedItems.filter(removethis => removethis.id != thisId);
+        loadSelectedItems();
+    })
+})
+
 
 const selectAbleItems = document?.querySelectorAll('.__items_list .__item');
 selectAbleItems.forEach(item => {
@@ -224,6 +241,6 @@ selectAbleItems.forEach(item => {
         loadSelectedItems();
         this.classList.add('selected');
     })
-})
+});
 
 /* =============================== Search and select Items [End] =============================== */
