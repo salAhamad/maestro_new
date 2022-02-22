@@ -436,7 +436,7 @@
                                 </button>
                             </div>
                             <div class="right-block d-flex align-items-center">
-                                <button class="cta__button">
+                                <button class="cta__button" id="mergeButton">
                                     <span class="__text">Merge</span>
                                     <span class="cta__button__after__icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="21.508" height="21.508" viewBox="0 0 21.508 21.508">
@@ -1640,7 +1640,7 @@
     </footer>
     <!-- Footer test Ends -->
 
-    <section class="overlay__section dashboardCustomizablePopup" style="display: block;">
+    <section class="overlay__section marge_overlay_section" style="display: none;">
         <div class="overlay__sub__section align-items-start">
             <div class="popup__container popup__dashboard__customize" style="max-width: 550px;">
                 <div class="popup__header d-flex justify-content-between">
@@ -1660,7 +1660,7 @@
                     <div class="mergeContactSelection">
                         <h6>Merging from:</h6>
                         <div class="search_n_select_container">
-                            <div class="__selected_items_container"></div>
+                            <div class="__selected_items_container" id="mergingFrom"></div>
                             <div class="__search__item">
                                 <input type="text" class="search_item" name="" id="" placeholder="Enter Contact Name or Reg. ID">
                                 <i class="fas fa-search"></i>
@@ -1706,7 +1706,7 @@
                         </div>
                         <h6>Merging with:</h6>
                         <div class="search_n_select_container">
-                            <div class="__selected_items_container"></div>
+                            <div class="__selected_items_container" id="mergingWith"></div>
                             <div class="__search__item">
                                 <input type="text" class="search_item" name="" id="" placeholder="Enter Contact Name or Reg. ID">
                                 <i class="fas fa-search"></i>

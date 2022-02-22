@@ -72,7 +72,7 @@ moreInfoButton.forEach(button => {
 const customizeButton = document.querySelector('[data-customize]');
 const closePopup = document?.querySelectorAll('.popup__close');
 const addNewReg = document?.querySelector('.addNewRegistration');
-customizeButton.addEventListener('click', function () {
+customizeButton?.addEventListener('click', function () {
     document.querySelector('.dashboardCustomizablePopup').style.display = 'block';
 });
 addNewReg?.addEventListener('click', function () {
@@ -80,6 +80,7 @@ addNewReg?.addEventListener('click', function () {
 });
 closePopup.forEach(closeButton => {
     closeButton.addEventListener('click', function () {
+        document.querySelector('.marge_overlay_section').style.display = 'none';
         document.querySelector('.dashboardCustomizablePopup').style.display = 'none';
         document.querySelectorAll('.overlay__section').forEach(overlaySection => overlaySection.style.display = 'none');
     });
@@ -160,22 +161,45 @@ regTabItems.forEach(item => {
     });
 });
 
+const mergeContactButton = document?.querySelectorAll('#mergeButton');
+const mergeOverlay = document?.querySelector('.marge_overlay_section');
+mergeContactButton.forEach(button => {
+    button.addEventListener('click', function() {
+        mergeOverlay.style.display = 'block';
+    })
+})
+
 /* =============================== Search and select Items [Begin] =============================== */
 // Searchable Inputs
-const inputs = document?.querySelectorAll('.search_item')
+const inputs = document?.querySelectorAll('.search_item');
+const dropdownListItems = document?.querySelectorAll('.__items_list');
+const selectAbleItems = document?.querySelectorAll('.__items_list .__item');
+
+const selecteItemContainer = document?.querySelector('#mergingFrom');
+let selectedItems = [
+    // { id: 555913, text: 'Tahreer Almutairi', },
+    // { id: 555912, text: 'Mohammed Al Masri', },
+];
+let merigngFromItems = [];
+let mergeWithItems = [];
+
 inputs.forEach(input => {
     input.addEventListener('keyup', function(e) {
         searchSelction(e);
     })
 })
+// Input search filter
 function searchSelction(e) {
+    e.stopImmediatePropagation();
+    dropdownListItems.forEach(lists => lists.style.display = 'none');
     var input, filter, lists, li, a, i, txtValue;
     input = e.target;
     filter = input.value.toUpperCase();
-    lists = e.target.closest('.search_n_select_container').querySelector('.__items_list');    
-    
+    lists = e.target.closest('.search_n_select_container').querySelector('.__items_list');        
+    let thisMainId = e.target.parentElement.parentElement.querySelector('.__selected_items_container');
+
     if(e.target.value.length > 0) lists.style.display = 'block';
-    else lists.style.display = 'none';
+    else lists.style.display = 'none';    
     
     items = lists.querySelectorAll(".__item");
     items.forEach((item, index) => {
@@ -188,23 +212,24 @@ function searchSelction(e) {
         } else {
             item.style.display = "none";
         }
+        // checking if items already on in the list & selected items        
+        if(thisMainId == 'mergingFrom') {               
+            merigngFromItems.forEach(selectedItem => {
+                if(selectedItem.id == item.id) item.classList.add('selected');
+            })
+        } else {
+            mergeWithItems.forEach(selectedItem => {
+                if(selectedItem.id == item.id) item.classList.add('selected');
+            })
+        }        
     })
-    // for (i = 0; i < li.length; i++) {
-    // }
 }
 
-
 // Loading/Adding Selected Item
-const selecteItemContainer = document?.querySelector('.__selected_items_container');
-let selectedItems = [
-    { id: 555913, text: 'Tahreer Almutairi', },
-    { id: 32507, text: 'Moath Alotaibi', },
-    { id: 555912, text: 'Mohammed Al Masri', },
-];
-// const selectedItems = [];
-
-function loadSelectedItems() {
-    selectedItems.map((item, index) => {
+function loadSelectedItems(printItems, printItemsTo) {
+    let loadItemId  = document.querySelector(`#${printItemsTo}`);
+    loadItemId.innerHTML = '';
+    printItems.map((item, index) => {
         let loadItem =  `<div class="selected__item" id="${item.id}">
             <span class="__icon">
                 <i class="far fa-address-book"></i>
@@ -213,34 +238,94 @@ function loadSelectedItems() {
                 <span class="_id">${item.id}</span>
                 <span class="_name">${item.text}</span>
             </span>
-            <span class="__remove__icon removeIcon" id="${item.id}">&times;</span>
+            <span class="__remove__icon removeIcon" onclick="removeItem(event)" id="${item.id}">&times;</span>
         </div>`
-        return selecteItemContainer.insertAdjacentHTML('beforeend', loadItem);
+        return loadItemId.insertAdjacentHTML('beforeend', loadItem);
     })
 }
-loadSelectedItems();
+loadSelectedItems(merigngFromItems, 'mergingFrom');
+loadSelectedItems(mergeWithItems, 'mergingWith');
 
-const removeSelecteItem = document?.querySelectorAll('.selected__item .removeIcon');
-removeSelecteItem.forEach(removeItem => {
-    removeItem.addEventListener('click', function(e) {
-        let thisId = e.target.id;
-        selectedItems = selectedItems.filter(removethis => removethis.id != thisId);
-        loadSelectedItems();
-    })
-})
-
-
-const selectAbleItems = document?.querySelectorAll('.__items_list .__item');
+// Reset All form
+function resetForm() { inputs.forEach(input => input.value = ''); }
+function removeItem(e) {
+    let thisId = e.target.parentNode.id;
+    // selectedItems = selectedItems.filter(removethis => removethis.id != thisId);
+    // selectAbleItems.forEach(selectedItem => {
+    //     if(selectedItem.id == thisId) selectedItem.classList.remove('selected');
+    // })
+    let thisMainId = e.target.parentNode.parentNode.id;
+    // loadSelectedItems(selectedItems, thisMainId);
+    if(thisMainId == 'mergingFrom') {               
+        merigngFromItems = merigngFromItems.filter(removethis => removethis.id != thisId);
+        selectAbleItems.forEach(selectedItem => {
+            if(selectedItem.id == thisId) selectedItem.classList.remove('selected');
+        })
+        loadSelectedItems(merigngFromItems, thisMainId);
+    } else {
+        mergeWithItems = mergeWithItems.filter(removethis => removethis.id != thisId);
+        selectAbleItems.forEach(selectedItem => {
+            if(selectedItem.id == thisId) selectedItem.classList.remove('selected');
+        })
+        loadSelectedItems(mergeWithItems, thisMainId);
+    }
+}
 selectAbleItems.forEach(item => {
-    item.addEventListener('click', function(e) {
-        let thisId, thisText, newItem;
+    item.addEventListener('click', function(e) {        
+        let thisId, thisText, newItem, thisSelectableParent;
+        thisSelectableParent = this.closest('.search_n_select_container').querySelector('.__selected_items_container');
         thisId = this.querySelector('._id').innerText;
         thisText = this.querySelector('._name').innerText;
         newItem = { id: thisId, text: thisText };
-        selectedItems.push(newItem);
-        loadSelectedItems();
-        this.classList.add('selected');
+
+        let checkId;
+        if(thisSelectableParent.id == 'mergingFrom') {
+            checkId = merigngFromItems.some(item => item.id === thisId);
+        } else {
+            checkId = mergeWithItems.some(item => item.id === thisId);
+        }
+        if(!checkId) {
+            this.classList.add('selected');
+            this.closest('.__items_list').style.display = 'none';
+            if(thisSelectableParent.id == 'mergingFrom') {
+                merigngFromItems.push(newItem);
+                loadSelectedItems(merigngFromItems, thisSelectableParent.id);
+            } else {
+                mergeWithItems.push(newItem);            
+                loadSelectedItems(mergeWithItems, thisSelectableParent.id);
+            }
+            resetForm();
+        } else {
+            this.classList.remove('selected');
+            this.closest('.__items_list').style.display = 'none';
+
+            if(thisSelectableParent.id == 'mergingFrom') {               
+                merigngFromItems = merigngFromItems.filter(contact => contact.id != thisId);
+                loadSelectedItems(merigngFromItems, thisSelectableParent.id);
+            } else {
+                mergeWithItems = mergeWithItems.filter(contact => contact.id != thisId);
+                loadSelectedItems(mergeWithItems, thisSelectableParent.id);
+            }
+            
+            resetForm();
+            return
+        }        
+        
+        // selectedItems.forEach(selectedItem => {
+        //     if(selectedItem.id == item.id) {
+        //         this.classList.remove('selected');
+        //         this.closest('.__items_list').style.display = 'none';
+        //         selectedItems = selectedItems.filter(contact => contact.id != thisId);
+        //         loadSelectedItems(selectedItems, thisSelectableParent.id);
+        //         resetForm();
+        //         return
+        //     }
+        // })
     })
+});
+document.addEventListener('click', function () {
+    resetForm();
+    dropdownListItems.forEach(lists => lists.style.display = 'none');
 });
 
 /* =============================== Search and select Items [End] =============================== */

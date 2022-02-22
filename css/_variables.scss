@@ -17,6 +17,7 @@ $tableHeadBgColor: #D4DFF2;
 
 $primaryGradient: linear-gradient(to left, #00b3ff 0%, #002c7b 100%);
 $primaryGradientHover: linear-gradient(to right, #00b3ff 0%, #002c7b 100%);
+$primaryGradientOppsite: $primaryGradientHover;
 $whiteGradient: linear-gradient(to right, #ddd 0%, #ffffff 100%);
 
 $boxShadow: 0 3px 5px rgba($black, .09), 0 8px 15px rgba($black, .07), 0 15px 30px rgba($black, .06), 0 25px 50px rgba($black, .05);
@@ -25,4 +26,4 @@ $inputHeight: 55px;
 $headerHeight: 55px;
 $iconHeight: 40px;
 
-$borderRadius: .6rem;
+$borderRadius: .5rem;

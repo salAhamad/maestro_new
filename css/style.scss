@@ -24,7 +24,7 @@ html {
 }
 body {
     font-family: $roboto;
-    font-size: .9rem;
+    font-size: 1rem;
     line-height: 1.5rem;
     padding-top: $headerHeight;
     scroll-behavior: smooth;
@@ -297,7 +297,6 @@ $rotateTranstion: 45s;
                     color: white;
                     font-weight: 300;
                     text-decoration: none;
-                    font-size: .88rem;
                     position: relative;
                     transition: $transition;
                     height: $headerHeight;
@@ -392,7 +391,6 @@ $rotateTranstion: 45s;
                             a {
                                 display: block;
                                 text-decoration: none;
-                                font-size: .9rem;
                                 line-height: normal;
                                 color: $black;
                                 padding: .7rem 1.15rem;
@@ -589,7 +587,6 @@ $rotateTranstion: 45s;
                                 justify-content: space-between;
                                 display: block;
                                 text-decoration: none;
-                                font-size: .9rem;
                                 line-height: normal;
                                 color: $black;
                                 padding: .7rem;
@@ -727,7 +724,6 @@ $rotateTranstion: 45s;
                     a {
                         display: block;
                         text-decoration: none;
-                        font-size: .88rem;
                         line-height: normal;
                         color: $black;
                         padding: .75rem 1.15rem;
@@ -975,6 +971,21 @@ $rotateTranstion: 45s;
     }
     &__before__icon {margin-left: -1rem; margin-right: .35rem;}
     &__after__icon {margin-right: -1rem; margin-left: .35rem;}
+    &__white {
+        border: 0;
+        background-color: $white !important;
+        color: $primary !important;
+        &:hover {
+            background-color: $primary !important;
+            border-color: $primary !important;
+            color: $white !important;
+            background-image: none;
+            box-shadow: inset 0 0 0 1px $primary;
+            svg path {
+                fill: $primary;
+            }
+        }
+    }
     &__primary {
         border: 0;
         background-color: $primary;
@@ -987,7 +998,6 @@ $rotateTranstion: 45s;
             // box-shadow: none;
             background-image: none;
             box-shadow: inset 0 0 0 1px $primary;
-            transform: scale(1.05);
             svg path {
                 fill: $primary;
             }
@@ -2587,15 +2597,32 @@ input, select, textarea {
         padding: .75rem;
         background-color: $primary;
         border-radius: $borderRadius $borderRadius 0 0;
-        background-image: url('../images/header_illustration.svg');
+        background-image: url('../images/header_illustration.svg'), $primaryGradientOppsite;
         background-repeat: no-repeat;
-        background-position: left -7% bottom -100px;
+        background-position: left -7% bottom -100px, left top;
         align-items: center;
         z-index: 5;
+        &.merge__contacts__header {
+            padding: .75rem 1.25rem;
+            border-radius: $borderRadius;
+            color: $white;
+            .heading__text {
+                position: relative;
+                max-width: max-content;
+                .__icon {
+                    width: 40px;
+                    height: 40px;
+                    @include flexCenter();
+                    margin-right: 1rem;
+                    img, svg {max-width: 100%; max-height: 100%; width: 100%;}
+                }
+            }
+
+        }
         
         .left-block, .right-block { gap: .7rem; }
         .cta__button {
-            background-color: rgba($white, .3);
+            background-color: rgba($white, .1);
             backdrop-filter: blur(3px);
             box-shadow: none;
             color: $white;
@@ -3323,7 +3350,7 @@ input, select, textarea {
             display: flex;
             align-items: center;
             cursor: pointer;
-            padding: .5rem .15rem .5rem .3rem;
+            padding: .5rem .3rem;
             transition: $transition;
             &:last-child {margin-bottom: .5rem;}
 
@@ -3437,8 +3464,10 @@ input, select, textarea {
                 display: inline-block;
                 &._id {
                     border-right: 1px solid $borderColor;
-                    padding-right: 0.35rem;
-                    margin-right: 0.35rem;
+                    padding-right: 0.5rem;
+                    margin-right: 0.5rem;
+                    min-width: 60px;
+                    text-align: right
                 }
             }
 
