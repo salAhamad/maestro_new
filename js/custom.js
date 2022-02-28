@@ -494,11 +494,7 @@ linkToggle.forEach(toggler => {
             container.addEventListener('transitionend', function () {
                 container.classList.remove('active');
             }, { once: true });
+            this.closest('tr').classList.remove('selected');
         }
     });  
-})
-
-
-const svgPath = document.querySelector('.e_icon path');
-console.log(svgPath);
-console.log(svgPath.getTotalLength());
+});

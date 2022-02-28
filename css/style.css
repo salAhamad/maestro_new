@@ -2840,7 +2840,7 @@ footer .footerContent p {
   width: 30px;
   height: 30px;
   font-size: calc(1rem + .4vw);
-  line-height: calc(1.6rem + .6vw);
+  line-height: calc(1.4rem + .5vw);
 }
 
 .popup__container .popup__body .customize__view_preSaved__items .preSaved_items__block > div .cta__options li .__icon i {
