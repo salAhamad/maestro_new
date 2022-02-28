@@ -6,17 +6,19 @@ $montserrat: 'Montserrat', sans-serif;
 $white: #ffffff;
 $black: #000000;
 $gray: #DDDDDD;
+$darGray: #454545;
 $lightGray: #E6E6E6;
 $green: #30A729;
 $red: #ff0000;
 $primary: #009FE3;
+$primaryLighten: lighten($primary, 52%);
 $borderColor: #cccccc;
 $transition: all .3s ease-in;
 $bodyBgColor: #F5FBFF;
 $tableHeadBgColor: #D4DFF2;
 
-$primaryGradient: linear-gradient(to left, #00b3ff 0%, #002c7b 100%);
-$primaryGradientHover: linear-gradient(to right, #00b3ff 0%, #002c7b 100%);
+$primaryGradient: linear-gradient(to left, #009FE3 0%, #1C007B 100%);
+$primaryGradientHover: linear-gradient(to right, #002c7b 0%, #00b3ff 100%);
 $primaryGradientOppsite: $primaryGradientHover;
 $whiteGradient: linear-gradient(to right, #ddd 0%, #ffffff 100%);
 
@@ -27,3 +29,5 @@ $headerHeight: 55px;
 $iconHeight: 40px;
 
 $borderRadius: .5rem;
+
+$border: 1px solid $borderColor;

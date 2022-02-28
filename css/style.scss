@@ -11,16 +11,17 @@ html {
     font-size: 14px;
     scrollbar-width: thin;
     scrollbar-color: $primary rgba($primary, 0.05);
-    ::-webkit-scrollbar {
-        width: .7rem;
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: $primary;
-        border-radius: .7rem;
-    }
-    ::-webkit-scrollbar-track {
-        background-color: rgba($primary, 0.05);
-    }
+    // ::-webkit-scrollbar {
+    //     width: .7rem;
+    // }
+    // ::-webkit-scrollbar-thumb {
+    //     background-color: $primary;
+    //     border-radius: .7rem;
+    // }
+    // ::-webkit-scrollbar-track {
+    //     background-color: rgba($primary, 0.05);
+    // }
+    @include scroller(.5rem)
 }
 body {
     font-family: $roboto;
@@ -31,6 +32,17 @@ body {
     scrollbar-width: thin;
     background-color: $bodyBgColor;
 }
+
+/* ============================ Common css [ Begins ] ============================ */ 
+.fw-300, .fw-light {font-weight: 300 !important;}
+.fw-400, .fw-regular {font-weight: 400 !important;}
+.fw-500, .fw-medium {font-weight: 500 !important;}
+.fw-600, .fw-semi-bold, .fw-semiBold {font-weight: 600 !important;}
+.fw-700, .fw-bold {font-weight: 700 !important;}
+.white-space-nowrap, .whiteSpaceNowrap {white-space: nowrap;}
+.white-space-normal, .whiteSpaceNormal {white-space: normal;}
+/* ============================ Common css [ Ends ] ============================== */ 
+
 
 /* Login CSS Starts */
 
@@ -669,7 +681,7 @@ $rotateTranstion: 45s;
                 position: absolute;
                 font-size: 12px;
                 font-family: 'Roboto Condensed', sans-serif;
-                background-color: #ffffff;
+                background-color: $white;
                 display: inline-block;
                 height: 15px;
                 text-align: center;
@@ -797,7 +809,7 @@ $rotateTranstion: 45s;
                     padding: 0;
                     list-style: none;
                     width: max-content;
-                    background-color: #fff;
+                    background-color: $white;
                     top: calc(100% + 4px);
                     border-radius: 3px;
                     box-shadow: 0 5px 10px rgba($black, 0.09), 0 10px 25px rgba($black, 0.07);
@@ -828,7 +840,7 @@ $rotateTranstion: 45s;
             .commonSearchContainer {
                 position: relative;
                 width: 100%;
-                // background-color: #fff;
+                // background-color: $white;
                 height: $searchBarHeight;
                 border-radius: 0 4px 4px 0;
                 top: 2px;
@@ -874,7 +886,7 @@ $rotateTranstion: 45s;
                         border-radius: 6px;
                         padding: .8rem 1rem 1rem;
                         box-shadow: 0 5px 10px rgba($black, 0.09), 0 10px 25px rgba($black, 0.07);
-                        background-color: #fff;
+                        background-color: $white;
                         display: none;
                         font-size: .9rem;
                         ._header {
@@ -948,7 +960,7 @@ $rotateTranstion: 45s;
     font-size: 1rem;
     transition: $transition;
     outline: none;
-    i {font-size: .8rem;}
+    i {font-size: 1rem;}
     &:hover {
         border-color: $primary;
         box-shadow: none;
@@ -1013,7 +1025,6 @@ $rotateTranstion: 45s;
             border-color: $black;
             color: $white;
             background-image: none;
-            transform: scale(1.05);
             svg path { fill: $black; color: $black; }
         }
     }
@@ -1618,12 +1629,19 @@ footer {
             }
             h3 {
                 // margin-left: -8rem;
-                font-size: 26px;
+                font-size: 24px;
                 font-family: $montserrat;
                 font-weight: 700;
                 z-index: 1;
                 max-width: 300px;
                 margin-bottom: 0;
+                > span {
+                    font-size: 1rem;
+                    display: block;
+                    font-family: $roboto;
+                    font-weight: 300;
+                    margin-bottom: 0.5rem;
+                }
             }
         }
         .popup__cta__buttons {
@@ -1652,15 +1670,209 @@ footer {
     .popup__body {
         padding: 0 0 0 1.5rem;
         display: flex;
+        min-height: fit-content;
+        $listItemWidth: 250px;
+        
+
+        .customize__view_preSaved_items__tabs {
+            min-width: $listItemWidth;
+            border-right: 1px solid lighten($borderColor, 9%);
+            padding: 1rem 0;
+            max-height: 70vh;
+            overflow-y: scroll;
+            @include scroller(.3rem);
+            
+            .preSaved_items__lists {
+                position: relative;
+                width: 100%;
+                padding: 0;
+                .preSaved_item {
+                    position: relative;
+                    width: 100%;
+                    padding: .25rem 1rem;
+                    margin: 0;
+                    list-style: none;
+                    cursor: pointer;
+                    &:not(:last-child) {border-bottom: 1px solid lighten($borderColor, 10%);}
+                    span {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        padding: .75rem 0;
+                        transition: $transition;
+                    }
+                    &.active, &:hover {
+                        span {
+                            border-radius: $borderRadius - .3;
+                            background-color: $primary;
+                            color: $white;
+                            padding: .75rem 1rem;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+        .customize__view_preSaved__items {
+            position: relative;
+            padding: 1.5rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+            max-height: 70vh;
+            overflow-y: scroll;
+            &:not(.active) {display: none;}
+            @include scroller(.3rem);
+
+            .preSaved_items__block {
+                position: relative;
+                width: 100%;
+                padding: .4rem .6rem .4rem .9rem;
+                background-color: $white;
+                border: $border;
+                display: flex;
+                justify-content: space-between;
+                border-radius: $borderRadius - .3;
+                &.selected {
+                    background-color: $primaryLighten;
+                    border-color: $primary;
+                    z-index: 1;
+                }
+                h6 { margin: 0; font-size: calc(1rem + .15vh);}
+                > div {
+                    display: flex;
+                    align-items: center;
+                    .cta__options {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        list-style: none;
+                        margin: 0;
+                        gap: .25rem;
+                        padding: 0 0 0 0.75rem;
+                        li {
+                            position: relative;
+                            width: $iconHeight - 10;
+                            height: $iconHeight - 10;
+                            text-align: center;
+                            @include flexCenter();
+                            z-index: 0;
+                            cursor: pointer;
+                            .__icon {
+                                width: $iconHeight - 10;
+                                height: $iconHeight - 10;
+                                font-size: calc(1rem + .4vw);
+                                line-height: calc(1.6rem + .6vw);
+                                i {font-size: 1.15rem; transition: $transition; }
+                                input {
+                                    width: 17px;
+                                    height: 17px;
+                                    margin-top: .45rem;
+                                    cursor: pointer;
+                                }
+                                &::after {
+                                    content: '';
+                                    position: absolute;
+                                    width: 100%;
+                                    height: 100%;
+                                    left: 0;
+                                    top: 0;
+                                    background-color: $primary;
+                                    z-index: -1;
+                                    border-radius: $iconHeight / 2;
+                                    transition: $transition;
+                                    transform: scale(0);
+                                }
+                                &:hover {
+                                    i { color: $white; }
+                                    &::after {transform: scale(1.15);}
+                                }
+                            }
+                            &.tooltipContainer {
+                                .tooltipData {
+                                    max-width: 210px;
+                                    font-size: calc(0.9rem + .05vw);
+                                    line-height: calc(1rem + .3vw);
+                                    padding: .4rem .7rem;
+                                    text-align: left;
+                                    transition-delay: 2s;
+                                    &._left, &.__left,
+                                    &._right, &.__right {
+                                        top: 4px;
+                                        &::after {top: 6px;}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                &:hover {z-index: 1;}
+            }
+        }
 
         .item__list__container {
             position: relative;
             border-right: 1px solid $borderColor;
             padding: 1.5rem 1.5rem 1.5rem 0;
+            min-width: max-content;
+            max-height: 70vh;
+            overflow-y: scroll;
+            @include scroller(.25rem);
+            padding-left: 1px;
 
+            .item__list__header {
+                position: relative;
+                width: 100%;
+                border-bottom: $border;
+                h6 {font-size: 1.05rem;}
+                
+                .filter__search__icon {
+                    width: $iconHeight - 5;
+                    height: $iconHeight - 5;
+                    @include flexCenter();
+                    transition: $transition;
+                    cursor: pointer;
+                    position: relative;
+                    z-index: 2;
+                    border-radius: $borderRadius - .4;
+                    background-color: transparent;
+                    border: 0;
+                    outline: none;
+                    &:hover {
+                        background-color: $primary;
+                        color: $white;
+                    }
+                }
+                input {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 0%;
+                    transition: $transition;
+                    height: $iconHeight - 5;
+                    border: 0;
+                    outline: none;
+                    z-index: 1;
+                    
+                    background-color: lighten($gray, 10%);
+                    border-radius: $borderRadius - .5;
+                    &.active { 
+                        width: $listItemWidth - 1; 
+                        box-shadow: 0 0 0 1px $primary;
+                        padding: 0 $iconHeight 0 $iconHeight - 30;
+                        &:focus {
+                            box-shadow: 0 0 0 2px $primary;
+                        }
+                    }
+                }
+            }
+            
             .item__list {
                 position: relative;
                 width: 100%;
+                min-width: $listItemWidth;
+                h6 {font-size: 0.9em;}
                 .item__input {
                     position: relative;
                     &:not(:last-child) {margin-bottom: .5rem;}
@@ -1681,12 +1893,15 @@ footer {
                         cursor: pointer;
                         border-radius: $borderRadius - .45;
                         transition: $transition;
-                        min-width: 250px;
+                        min-width: $listItemWidth;
+                        max-width: $listItemWidth;
                         &::after {
                             content: "\f00c";
                             @include fontAwesome();
                             margin-left: 1.5rem;
                             width: 18px;
+                            min-width: 18px;
+                            min-height: 18px;
                             height: 18px;
                             @include flexCenter();
                             font-size: .7rem;
@@ -1698,7 +1913,7 @@ footer {
                     }
                     input:checked ~ label {
                         border-color: $primary;
-                        background-color: lighten($primary, 48%);
+                        background-color: $primaryLighten;
                         font-weight: 700;
                         color: darken($primary, 10%);
                         &::after {
@@ -1709,15 +1924,21 @@ footer {
                     }
                 }
             }
+
         }
         .customizable__item__list {
             position: relative;
             width: 100%;
             padding: 1.5rem;
             background-color: #f5f5f5;
+            max-height: 70vh;
+            overflow-y: scroll;
+            @include scroller(.25rem);
             .selected__item__list {
                 position: relative;
                 width: 100%;
+                display: flex;
+                flex-direction: column;
 
                 .selected__item {
                     display: flex;
@@ -1728,19 +1949,66 @@ footer {
                     font-weight: 700;
                     cursor: move;
                     &:not(:last-child) {margin-bottom: .5rem;}
+                    
+                    .freezedStrip {display: none;}
+                    &.freezed {
+                        background-color: $gray;
+                        color: $black;
+                        order: -1;
+                        cursor: auto;
+                        user-select: none;
+                        .freezedStrip {
+                            position: absolute;
+                            right: .25rem;
+                            top: .25rem;
+                            background-color: $white;
+                            border-radius: $borderRadius - .5;
+                            padding: .48rem .8rem .4rem .1rem;
+                            display: flex;
+                            font-size: .85rem;
+                            line-height: .85rem;
+                            align-items: center;
+                            cursor: pointer;
+                            transition: $transition;
+                            &::after {content: 'Freezed';}
+                            i {
+                                width: 28px;
+                                font-size: 1rem;
+                                @include flexCenter();
+                            }
+                            &:hover {
+                                background-color: $red;
+                                color: white;
+                                &::after {content: 'Unfreeze';}
+                                i::before {content: '\f00d';}
+                            }
+                        }
+                    }
                     .__icon {
                         min-width: 20px;
                         opacity: .5;
+                        background-image: url('../images/dragable__icon.svg');
+                        background-repeat: repeat-y;
+                        img {display: none;}
                     }
                     &.sortable-chosen {
-                        // transition: all .2s ease-out;
                         background-color: $black;
-                        // transform: scale(1.05);
                         opacity: 1;
                         .__icon {opacity: 1;}
                     }
-                    &.draggOver {
-                        background-color: #ccc;
+                    // &.draggOver { background-color: #ccc; }
+                    .moreInfoButtonContainer {
+                        position: absolute;
+                        right: .35rem;
+                        top: calc(50% - #{$iconHeight - 6});
+                        > .icon {
+                            width: $iconHeight - 13;
+                            height: $iconHeight - 13;
+                            &:hover {
+                                i {color: $black;}
+                                &::after {background-color: $white; color: $black;}
+                            }
+                        }
                     }
                 }
             }
@@ -1756,6 +2024,198 @@ footer {
         border-radius: 0 0 $borderRadius $borderRadius;
     }
 }
+.share__view__container {
+    $borderRadius: $borderRadius + .2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: $borderRadius;
+    z-index: 5;
+    background-color: rgba($white, .1);
+    backdrop-filter: blur(3px) brightness(90%);
+    .share__view__sub__container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding-top: 1rem;
+        @include flexCenter($ai: start);
+
+        .share__view__data__container {
+            background-color: #fff;
+            border-radius: $borderRadius;
+            min-width: 450px;
+            max-width: 90%;
+            box-shadow: 0 10px 20px rgba($black, 0.1);
+            
+            .__header {
+                position: relative;
+                width: 100%;
+                border-bottom: 1px solid rgba($borderColor, .1);
+                padding: calc(.75rem + .5vw) calc(.8rem + .5vw) calc(.5rem + .5vw);
+                background-color: #f3f3f3;
+                border-radius: $borderRadius $borderRadius 0 0;
+                h5 {font-size: calc(.8rem + .4vw);}
+                .close__icon {
+                    width: $iconHeight - 15;
+                    height: $iconHeight - 15;
+                    @include flexCenter();
+                    font-size: calc(1rem + .4vw);
+                    border-radius: $borderRadius - .45;
+                    transition: $transition;
+                    cursor: pointer;
+                    &:hover { background-color: $red; color: $white; }
+                }
+            }
+            .__body {
+                padding: calc(1rem + .5vw) calc(.8rem + .5vw);
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                .selectedable__block {
+                    position: relative;
+                    width: 100%;                    
+                    // &:not(:last-child) {
+                    //     border-bottom: 1px dashed $borderColor;
+                    //     padding-bottom: 1rem;
+                    // }
+                    .shareView_selecteable__lists {
+                        position: relative;
+                        width: 100%;
+                        display: flex;
+                        flex-wrap: wrap;
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        gap: .5rem;
+                        li {
+                            padding: .25rem .75rem .25rem .2rem;
+                            background-color: $gray;
+                            border-radius: $borderRadius - .4;
+                            border: $border;
+                            transition: $transition;
+                            cursor: pointer;
+                            font-size: calc(.8rem + .12vw);
+                            i {
+                                width: 30px;
+                                text-align: center;
+                            }
+                            &:hover {
+                                border-color: $primary; 
+                                background-color: $primaryLighten;
+                                > i {
+                                    &:hover {color: $red;}
+                                    &::before {content: '\f00d';}
+                                }
+                            }
+                        }
+                        &.viewList_items {
+                            li {
+                                background-color: $primary;
+                                border-color: $primary;
+                                color: $white;
+                                &:hover {
+                                    color: $primary;
+                                    border-color: $primary; 
+                                    background-color: $primaryLighten;
+                                    > i {
+                                        &:hover {color: $red;}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .addNew__input__container {
+                        position: relative;
+                        width: 100%;
+                        margin-top: .5rem;
+                        height: $iconHeight;
+                        button {
+                            background-color: $darGray;
+                            color: $white;
+                            position: absolute;
+                            height: 100%;
+                            border: 0;
+                            padding: 0 .75rem;
+                            height: $iconHeight - 8;
+                            top: 4px;
+                            right: 4px;
+                            border-radius: $borderRadius - .45;
+                            transition: $transition;
+                            i {margin-left: .75rem;}
+                            &:hover {
+                                background-color: $primary;
+                            }
+                        }
+                        input {
+                            width: 100%;
+                            height: 100%;
+                            border: 0;
+                            box-shadow: inset 0 -1px 0 $borderColor, inset 0 1px 0 $borderColor;
+                            outline: none;
+                            transition: $transition;
+                            &:focus {
+                                box-shadow: inset 0 0 0 2px $primary;
+                                padding: 0 1rem;
+                            }
+                        }
+                        .selecteable__lists {
+                            position: absolute;
+                            border-radius: 0 0 $borderRadius - .3 $borderRadius - .3;
+                            background-color: $white;
+                            z-index: 2;
+                            background-color: $white;
+                            width: 100%;
+                            box-shadow: 0 8px 20px rgba($black, .15);
+                            list-style: none;
+                            padding: 0;
+                            max-height: 205px;
+                            overflow-y: scroll;
+                            @include scroller(.35rem);
+                            li {
+                                position: relative;
+                                width: 100%;
+                                padding: .6rem .75rem;
+                                &:not(:last-child) { border-bottom: $border; }
+                                transition: $transition;
+                                cursor: pointer;
+                                &.selected {
+                                    padding-left: $iconHeight + 10;
+                                    display: flex;
+                                    align-items: center;
+                                    background-color: $primaryLighten;
+                                    &::after {
+                                        border-radius: $borderRadius - .4;
+                                        content: '\f00c';
+                                        @include fontAwesome();
+                                        position: absolute;
+                                        left: 10px;
+                                        width: $iconHeight - 10;
+                                        height: $iconHeight - 10;
+                                        @include flexCenter();
+                                        background-color: rgba($primary, .2);
+                                    }
+                                }
+                                &:hover {
+                                    background-color: $primary;
+                                    color: $white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .popup__footer {
+                padding: calc(.5rem + .5vw) calc(.8rem + .5vw) calc(.75rem + .5vw);
+                background-color: #f3f3f3;
+                // border-radius: $borderRadius $borderRadius 0 0;
+            }
+        }
+    }
+}
+
+.sava__changes_input {height: $iconHeight;}
 
 // Registration Form
 .registration_form {
@@ -1894,7 +2354,7 @@ footer {
     }
     input:checked ~ label {
         font-weight: 700;
-        background-color: lighten($primary, 49%);
+        background-color: $primaryLighten;
         box-shadow: inset 0 0 0 1px lighten($primary, 30%);
     }
 
@@ -2252,7 +2712,7 @@ input, select, textarea {
         $pointerWidth: 6px;
 
         &::after { content: ''; position: absolute; }        
-        &._top {
+        &._top, &.__top {
             bottom: calc(100% + 10px);
             transform: translateX(-50%); 
             left: 50%;
@@ -2266,7 +2726,7 @@ input, select, textarea {
             }
         
         }
-        &._left {
+        &._left, &.__left {
             right: calc(100% + 10px);
             top: -6px;
             &::after {
@@ -2277,7 +2737,7 @@ input, select, textarea {
                 left: 100%;
             }
         }
-        &._right {
+        &._right, &.__right {
             left: calc(100% + 10px);
             top: -6px;
             &::after {
@@ -2288,7 +2748,7 @@ input, select, textarea {
                 right: 100%;
             }
         }
-        &._bottom {
+        &._bottom, &.__bottom {
             top: calc(100% + 10px); 
             transform: translateX(-50%); 
             left: 50%;
@@ -2416,7 +2876,7 @@ input, select, textarea {
                             padding: 0.3rem 0.7rem 0.3rem 0.4rem;
                             flex-direction: row-reverse;
                             gap: .5rem;
-                            background-color: #fff;
+                            background-color: $white;
                             border-radius: $borderRadius - .35;
                             box-shadow: inset 0 0 0 1px $borderColor;
                         }
@@ -2597,7 +3057,7 @@ input, select, textarea {
         padding: .75rem;
         background-color: $primary;
         border-radius: $borderRadius $borderRadius 0 0;
-        background-image: url('../images/header_illustration.svg'), $primaryGradientOppsite;
+        background-image: url('../images/header_illustration.svg'), $primaryGradient;
         background-repeat: no-repeat;
         background-position: left -7% bottom -100px, left top;
         align-items: center;
@@ -2609,6 +3069,8 @@ input, select, textarea {
             .heading__text {
                 position: relative;
                 max-width: max-content;
+                margin-right: .5rem;
+                h5 {font-size: 1.2rem; margin: 0;}
                 .__icon {
                     width: 40px;
                     height: 40px;
@@ -2617,12 +3079,38 @@ input, select, textarea {
                     img, svg {max-width: 100%; max-height: 100%; width: 100%;}
                 }
             }
+            .mergeable__contacts {
+                position: relative;
+                width: 100%;
+                gap: 1.25rem;
+                border-left: 1px solid rgba($borderColor, 0.3);
+                padding-left: .75rem;
+                .merging__into, .merging__from {
+                    position: relative;
+                    ul {
+                        margin: 0;
+                        list-style: none;
+                        padding: 0;
+                        display: flex;
+                        li {
+                            position: relative;
+                            span {font-size: 0.8rem;}
+                            h5 {
+                                font-size: 1.25rem;
+                                font-weight: 300; 
+                                strong { font-weight: 700; }
+                            }
+                            .contact-ids {gap: .35rem;}
+                        }
+                    }
+                }
+            }
 
         }
         
         .left-block, .right-block { gap: .7rem; }
         .cta__button {
-            background-color: rgba($white, .1);
+            background-color: rgba($white, .2);
             backdrop-filter: blur(3px);
             box-shadow: none;
             color: $white;
@@ -2786,6 +3274,253 @@ input, select, textarea {
     }
 }
 
+.horizontal__scroll__container {
+}
+.merge__contacts__body {
+    position: relative;
+    width: 100%;
+    max-width: 1080px;
+    padding: 1rem 0 ;
+    overflow-x: hidden;
+    @include scroller(.35rem);
+    &.grabbing > * {pointer-events: none;}
+    .merge__contacts__sub_body {
+        padding-bottom: .25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        position: relative;
+        pointer-events: none;
+    }
+    .sticky-left {
+        position: sticky !important;
+        left: 0 !important;
+        z-index: 1 !important;
+    }
+    .merge_contact_block {
+        position: relative;
+        width: fit-content;
+        background-color: $white;
+        // border: $border;
+        box-shadow: inset 0 0 0 1px rgba($borderColor, .45);
+        border-radius: $borderRadius;
+        padding: .75rem;
+        display: flex;
+        $gap: 1rem;
+        gap: var(--gap);
+        $blockWidth: var(--boxWidth);
+        .merge_column_block {
+            position: relative;
+            width: 100%;
+            max-width: $blockWidth;
+            min-width: $blockWidth;
+            z-index: 0;
+
+            .form_element__block__container {
+                position: relative;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: $gap - .3;
+                .form_element__block {
+                    position: relative;
+                    width: 100%;
+                    border-radius: $borderRadius - .1;
+                    background-color: $white;
+                    display: flex;
+                    align-items: center;
+                    padding: $gap - .2;
+                    border: $border;
+                    gap: $gap - .5;
+                    h6 {margin: 0;}
+
+                    .radio__selection {
+                        pointer-events: initial;
+                        display: flex;
+                        margin-right: .5rem;
+                        input { position: absolute; z-index: -999; visibility: hidden; opacity: 0;}
+                        label {
+                            width: 25px;
+                            height: 25px;
+                            border-radius: $borderRadius * 2;
+                            background-color: $gray;
+                            color: $white;
+                            transition: $transition;
+                            cursor: pointer;
+                            border: 1px solid transparent;
+                            font-size: 1.1rem;
+                            z-index: 1;
+                            &::before {
+                                content: '\f00c';
+                                @include fontAwesome();
+                                position: relative;
+                                width: 100%;
+                                height: 100%;
+                                @include flexCenter();
+                                transition: $transition;
+                                pointer-events: none;
+                                transform: scale(0);
+                            }
+                            &:hover { border-color: $primary; }
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                z-index: 0;
+                                pointer-events: none;
+                                inset: 0;
+                                border-radius: 5px;
+                                background: transparent;
+                                box-shadow: 0 0 0 2px $primary;
+                                background-color: rgba($primary, 0.03);
+                                opacity: 0;
+                                visibility: hidden;
+                                transition: $transition;
+                            }
+                        }
+                        input:checked ~ label {
+                            background-color: $primary;
+                            border-color: $primary;
+                            &::before { transform: scale(1); }
+                            &::after { visibility: visible; opacity: 1; }
+                        }
+                    }
+                    .title__lable {
+                        width: max-content;
+                        min-width: 100px;
+                        max-width: 100px;
+                        padding-left: 1.2rem;
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: center;
+                        position: relative;
+                        margin-right: 1rem;
+                        span {max-width: max-content; display: inline-flex;}
+                        &.mandatoryField {
+                            &::before {
+                                position: absolute;
+                                left: 0;
+                                content: '\f621';
+                                @include fontAwesome();
+                                color: $red;
+                                font-size: 0.6rem;
+                            }
+                        }
+                    }
+                    .element__type {
+                        font-weight: 700;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        
+                        &.element__type__input {}
+                        &.element__type__radio {}
+                        &.element__type__select {
+                            justify-content: space-between;
+                            &::after {
+                                content: '\f078';
+                                @include fontAwesome();
+                                font-size: .8rem;
+                                width: 15px;
+                                margin-left: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .radioType__button__container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: $gap + .25;
+            .radio__button {
+                position: relative;
+                display: flex;
+                align-items: center;
+                $cirlceSize: 20px;
+                font-weight: 400;
+                user-select: none;
+                .radio__circle {
+                    width: $cirlceSize;
+                    height: $cirlceSize;
+                    border-radius: $cirlceSize / 2;
+                    @include flexCenter();
+                    position: relative;
+                    overflow: hidden;
+                    margin-right: .55rem;
+                    background-color: $gray;
+                    color: transparent;
+                    &::before {
+                        content: '\f00c';
+                        @include fontAwesome();
+                        @include flexCenter();
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        inset: 0;
+                        font-size: .9rem;
+                    }
+                }
+                &.active .radio__circle {
+                    background-color: $primary;
+                    color: $white;
+                }
+                &.radio__circle {}
+            }
+        }
+        &.merge_sub_header {
+            .merge_column_block {
+                &.selected {
+                    color: $primary;
+                    svg path { fill: $primary; }
+                }
+                &:first-child {
+                    background-color: $white;
+                    border-right: $border;
+                    padding: 0 1rem 0 .25rem;
+                }
+            }
+        }
+        &.merge_sub_body {
+            .merge_column_block {
+                padding: $gap;
+                background-color: #f8f8f8;
+                box-shadow: inset 0 0 0 1px rgba($borderColor, 0.4);
+                border-radius: $borderRadius - .15;
+                &.selected {
+                    background-color: #dbf4ff;
+                    box-shadow: inset 0 0 0 2px rgba($primary, 0.8);
+                    z-index: 2;
+                    .form_element__block__container .form_element__block .radio__selection input:checked ~ label::after { 
+                        visibility: hidden; opacity: 0; 
+                    }
+                }
+            }
+        }
+        .table__based__data__container {
+            .listingTable thead {
+                background-color: #f1f1f1;
+                border: 1px solid #ccc;
+                border-bottom: 0;
+            }
+            .table__footer {
+                .page__view__perPage {
+                    font-size: 0.9em;
+                    .show__page {height: 26px;}
+                }
+            }
+        }
+        &.merge_contact_block__heading {
+            position: relative;
+            width: 100%;
+            padding: 0;
+            background-color: transparent;
+            border: 0;
+            box-shadow: none;
+        }
+    }
+}
+
 .listingTable {
     position: relative;
     width: 100%;
@@ -2809,10 +3544,8 @@ input, select, textarea {
             position: relative;
             z-index: 1;
             background-color: $white;
-            &.active {z-index: 3;}
-            
-            &:not(.spacer) { box-shadow: inset 0 0 0 1px darken($tableHeadBgColor, 8%); }
-            
+            &.active {z-index: 3;}            
+            &:not(.spacer) { box-shadow: inset 0 0 0 1px darken($tableHeadBgColor, 8%); }            
             &:hover, &:focus-within, &:foc {
                 box-shadow: inset 0 0 0 1px $white,
                     inset 0 0 0 2px $primary,
@@ -2885,6 +3618,91 @@ input, select, textarea {
                     &.pending, &.inprogress, &.in-progress, &.in_progress {color: darkorange;}
                     &.delete, &.deleted, &.removed, &.remove {color: darkred; }
                     &.submited, &.submit, &.submite { color: darkblue; }
+                }
+            }
+            .quick__view__button {
+                position: absolute;
+                right: 0;
+                top: 11px;
+                background-color: $black;
+                color: $white;
+                height: 30px;
+                width: 0;
+                overflow: hidden;
+                @include flexCenter();
+                border-radius: $borderRadius - .25;
+                cursor: pointer;
+                transition: $transition;
+                flex-wrap: nowrap;
+                white-space: nowrap;
+                i {width: 33px; text-align: center; font-size: .9rem;}
+                &:hover { 
+                    background-color: $white; 
+                    color: $primary;
+                    box-shadow: 0 5px 10px rgba($black, 0.15);
+                }
+                &.active i::before {content: '\f00d'; color: $red;}
+                &.active {
+                    background-color: $white; 
+                    color: $primary;
+                    width: 115px;
+                    padding: 0 .75rem 0 0;
+                    right: 1rem;
+                    i::before {content: '\f00d'; color: $red;}
+                }
+            }
+            &:hover {
+                .quick__view__button, .quick__view__button.active {
+                    width: 115px;
+                    padding: 0 .75rem 0 0;
+                    right: 1rem;
+                }
+            }
+            .quick__view__data__container {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                color: $black;
+                padding: 0 1rem;
+                transition: height 0.35s ease-in-out;
+                overflow: hidden;
+                &:not(.active) {display: none;}
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-color: rgba($white, .05);
+                    width: 100%;
+                    height: 110%;
+                    z-index: 0;
+                    backdrop-filter: blur(2px);
+                }
+                .registration__detail___body {
+                    z-index: 1;
+                    .content__block {
+                        border-top-left-radius: 0;
+                        border-top-right-radius: 0;
+                        padding: 1.25rem;
+
+                        .__footer {
+                            width: 100%;
+                            margin-top: .5rem;
+                            display: flex;
+                            align-items: center;
+                            position: relative;
+                            &.__bordered {
+                                &::before {
+                                    background-color: $borderColor;
+                                    content: '';
+                                    width: 100%;
+                                    height: 1px;
+                                    margin-right: 1rem;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -3371,7 +4189,7 @@ input, select, textarea {
                 font-size: 1rem;
             }
             .__icon {margin-right: .5rem;}
-            .__remove__icon {
+            .__remove_  _icon {
                 margin-left: .4rem;
                 border-radius: $borderRadius - .35;
                 color: $red;
@@ -3477,4 +4295,56 @@ input, select, textarea {
             }
         }
     }
+}
+
+.pre_loader_overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include flexCenter();
+    z-index: 10;
+    background-color: rgba($white, .2);
+    backdrop-filter: blur(3px);
+
+    $e_animation_timing: 2500ms;
+    $e_bg_animation_animation: 400ms;
+    $letters_bg_animation: $e_animation_timing + $e_bg_animation_animation / 2;
+    $e_stroke_dashoffset: 623;
+    .pre_loader_container {
+        width: 100px;
+        @include flexCenter();
+        --stroke-width: calc(1px + .5vw);
+        svg {
+            width: 100%;
+            height: 100%;
+            .e_icon {
+                fill: transparent;
+                animation: fillAnime $e_bg_animation_animation linear forwards $e_animation_timing;
+                path {
+                    stroke-dasharray: $e_stroke_dashoffset;
+                    stroke-dashoffset: $e_stroke_dashoffset;
+                    stroke-width: var(--stroke-width);
+                    animation: lineAnimation $e_animation_timing linear forwards;
+                }
+            }
+            .e_letters {
+                transform: translateX(-70%) translateY(11.486px);
+                animation: letterAnime $e_bg_animation_animation * 2 linear forwards $letters_bg_animation;
+                path {
+                    $extendTiming: 100;
+                    fill: transparent;
+                    &:nth-child(1) { animation: letterfillAnime $e_bg_animation_animation linear forwards $letters_bg_animation + $extendTiming * 5; }
+                    &:nth-child(2) { animation: letterfillAnime $e_bg_animation_animation linear forwards $letters_bg_animation + $extendTiming * 6; }
+                    &:nth-child(3) { animation: letterfillAnime $e_bg_animation_animation linear forwards $letters_bg_animation + $extendTiming * 7; }
+                    &:nth-child(4) { animation: letterfillAnime $e_bg_animation_animation linear forwards $letters_bg_animation + $extendTiming * 8; }       
+                }
+            }
+            @keyframes lineAnimation { to { stroke-dashoffset: 0; } }
+            @keyframes fillAnime { to { fill: $primary; } }
+            @keyframes letterfillAnime { to { fill: $black; } }
+            @keyframes letterAnime { to { transform: translateX(68px) translateY(11.486px); } }
+        }
+    }   
 }

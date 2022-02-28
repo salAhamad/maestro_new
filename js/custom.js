@@ -169,7 +169,7 @@ mergeContactButton.forEach(button => {
     })
 })
 
-/* =============================== Search and select Items [Begin] =============================== */
+/* =============================== Search and select Items [ Begin ] =============================== */
 // Searchable Inputs
 const inputs = document?.querySelectorAll('.search_item');
 const dropdownListItems = document?.querySelectorAll('.__items_list');
@@ -247,7 +247,13 @@ loadSelectedItems(merigngFromItems, 'mergingFrom');
 loadSelectedItems(mergeWithItems, 'mergingWith');
 
 // Reset All form
-function resetForm() { inputs.forEach(input => input.value = ''); }
+function resetForm() { 
+    inputs.forEach(input => input.value = ''); 
+    customizeFilterInput.value = '';
+    if(customizeFilterInput.value == 0) {
+        filterableItem.forEach(item => item.style.display = 'block');
+    }
+}
 function removeItem(e) {
     let thisId = e.target.parentNode.id;
     // selectedItems = selectedItems.filter(removethis => removethis.id != thisId);
@@ -328,4 +334,171 @@ document.addEventListener('click', function () {
     dropdownListItems.forEach(lists => lists.style.display = 'none');
 });
 
-/* =============================== Search and select Items [End] =============================== */
+/* =============================== Search and select Items [ End ] =============================== */
+
+const customizeFilterInput = document?.querySelector('#filter__input');    
+const filterableItem = document.querySelector('#customize_items_container').querySelectorAll('.filterable__item');
+
+// Show / Hide Search Input
+const customizeFilterButton = document?.querySelector('#filter__search__icon');
+customizeFilterButton.addEventListener('click', function() {
+    showFilterInput();
+})
+function showFilterInput() {
+    customizeFilterInput.value = '';
+    customizeFilterInput.classList.toggle('active');
+    if(customizeFilterInput.value == 0) {
+        filterableItem.forEach(item => item.style.display = 'block');
+    }
+}
+
+/* Note: always put element's ID in string form without #*/
+inputFilter('filter__input', 'customize_items_container');
+
+// Customize  search/filter Items
+function inputFilter(inputId, filterItems) {
+    let searchableInput = document.querySelector(`#${inputId}`);
+    searchableInput.addEventListener('keyup', function(e) {
+        e.stopImmediatePropagation();
+        console.log(e);
+        let filterItemsContainer, input, filterText, lists, txtValue;    
+        filterItemsContainer  = document.querySelector(`#${filterItems}`);    
+        input = e.target;
+        filterText = input.value.toUpperCase();
+        lists = document.querySelector('.__items_list');    
+        items = filterItemsContainer.querySelectorAll('.filterable__item');
+        items.forEach((item, index) => {
+            thisText = item.querySelector('label');
+            txtValue = thisText.textContent || thisText.innerText;
+            if (txtValue.toUpperCase().indexOf(filterText) > -1) {
+                item.style.display = "";
+            } else {
+                item.style.display = "none";
+            }
+        })
+    });
+}
+
+let contactsArrangeableItems = [
+    { id: 0001, text: 'Registration ID' },
+    { id: 0002, text: 'Registration Category' },
+    { id: 0003, text: 'Name' },
+    { id: 0004, text: 'Email' },
+]
+
+
+const customizeInputBox = document.querySelectorAll('.customize_input_lists .item__input');
+customizeInputBox.forEach(costomizeInput => {
+    costomizeInput.addEventListener('input', function (e) {
+        customizeListSection(e);
+    })
+})
+
+function customizeListSection(e) {
+    let labelText, darrageItemContainer;
+    if(e.target.checked) {
+        labelText = e.currentTarget.querySelector('label').innerText;
+        darrageItemContainer = e.currentTarget.closest('.popup__body').querySelector('.selected__item__list');
+    }
+}
+
+const preSavedTabItems = document?.querySelectorAll('.preSaved__tabItems .preSaved_item');
+preSavedTabItems.forEach(tabItem => {
+    tabItem.addEventListener('click', function() {
+        let thisId =  this.id;
+        this.classList.add('active');
+        const thisMainParent = this.parentElement.parentElement.parentNode;
+        const preSavedTabItems__data = thisMainParent.querySelectorAll('.customize__view_preSaved__items');
+        preSavedTabItems.forEach(item => item.classList.remove('active'));
+        preSavedTabItems__data.forEach(tabDataItem => tabDataItem.classList.remove('active'));
+        thisMainParent.querySelector(`#${thisId}__data`).classList.add('active');        
+        console.log(preSavedTabItems__data.id);
+    })
+})
+
+const shareButtons = document?.querySelectorAll('.data-share');
+shareButtons.forEach(shareButton => {
+    shareButton.addEventListener('click', function(e) {
+        document.querySelector('.share__view__container').style.display = 'block';
+    })
+})
+
+function shareViewClosePopup(e) {
+    document.querySelector('.share__view__container').style.display = 'none';
+}
+document?.querySelector('#addNewCustomizeView').addEventListener('click', function() {
+    document.querySelector('.addNewCustomize__overlay').style.display = 'block';
+    document.querySelector('.dashboardCustomizablePopup').style.display = 'none';
+});
+
+shareSelection('viewList__input', 'viewList_listItems');
+shareSelection('users__input', 'users_items');
+
+function shareSelection(inputId, filterItems) {
+    let searchableInput = document.querySelector(`#${inputId}`);
+    searchableInput.addEventListener('keyup', function(e) {
+        e.stopImmediatePropagation();
+        console.log(e);
+        let filterItemsContainer, items, input, filterText, txtValue;    
+        
+        filterItemsContainer  = document.querySelector(`#${filterItems}`);    
+        console.log(filterItemsContainer);
+        
+        input = e.target;
+        filterText = input.value.toUpperCase();
+
+        if(input.value.length > 0) filterItemsContainer.style.display = 'block';
+        else filterItemsContainer.style.display = 'none';
+
+        items = filterItemsContainer.querySelectorAll('li');
+        console.log(items);
+        items.forEach((item, index) => {
+            txtValue = item.textContent || item.innerText;
+            if (txtValue.toUpperCase().indexOf(filterText) > -1) {
+                item.style.display = "";
+            } else {
+                item.style.display = "none";
+            }
+        })
+    });
+}
+document.addEventListener('click', function () {
+    document.querySelectorAll('.addNew__input__container .selecteable__lists').forEach(lists => lists.style.display = 'none');
+    document.querySelectorAll('.addNew__input__container input').forEach(inputs => inputs.value = '');
+    document.querySelector('#viewList__input').value = '';
+    dropdownListItems.forEach(lists => lists.style.display = 'none');
+});
+
+
+var linkToggle = document.querySelectorAll('.quickViewToggle');
+
+// for(i = 0; i < linkToggle.length; i++){
+linkToggle.forEach(toggler => {
+    toggler.addEventListener('click', function(event){
+        event.preventDefault();
+        this.classList.toggle('active');
+        this.closest('tbody').querySelectorAll('tr').forEach(tr => tr.classList.remove('selected'));
+        this.closest('tr').classList.toggle('selected');
+        let container = document.getElementById(this.dataset.toggle);
+        console.log(container);
+        if (!container.classList.contains('active')) {      
+            container.classList.add('active');
+            container.style.height = 'auto';
+            var height = container.clientHeight + 30 + 'px';
+            container.style.height = '0px';
+            setTimeout(function () {
+                container.style.height = height;
+            }, 0);      
+        } else {      
+            container.style.height = '0px';
+            container.addEventListener('transitionend', function () {
+                container.classList.remove('active');
+            }, { once: true });
+        }
+    });  
+})
+
+
+const svgPath = document.querySelector('.e_icon path');
+console.log(svgPath);
+console.log(svgPath.getTotalLength());
